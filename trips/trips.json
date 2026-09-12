@@ -1,0 +1,8 @@
+[
+  {
+    "id": "madrid-18s",
+    "name": "Madrid (18-20 Septiembre)",
+    "file": "./trips/madrid_18s.json",
+    "default": true
+  }
+]
