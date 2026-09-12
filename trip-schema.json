@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TripExplorerSchema",
+  "description": "Especificación JSON para cargar viajes y actividades en Universal Trip & Weekend Explorer",
+  "type": "object",
+  "required": ["tripName", "baseLocation", "activities"],
+  "properties": {
+    "tripName": {
+      "type": "string",
+      "description": "Nombre o título del viaje (ej: 'Madrid Weekend Explorer')"
+    },
+    "dates": {
+      "type": "string",
+      "description": "Fechas del evento o viaje (ej: '18 al 20 de Septiembre')"
+    },
+    "baseLocation": {
+      "type": "object",
+      "description": "Punto de referencia inicial (hotel, apartamento o punto neurálgico)",
+      "required": ["name", "lat", "lng"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nombre descriptivo del punto base"
+        },
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Latitud en grados decimales (WGS84)"
+        },
+        "lng": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180,
+          "description": "Longitud en grados decimales (WGS84)"
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "description": "Listado de categorías para los filtros. Opcional (si se omite, se autogenera de activities)",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificador único sin espacios (ej: 'musica', 'arte')"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre visible en el botón de filtro"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Clase de icono FontAwesome (ej: 'fa-music', 'fa-palette')"
+          }
+        }
+      }
+    },
+    "activities": {
+      "type": "array",
+      "description": "Catálogo completo de eventos y planes disponibles",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "category", "lat", "lng"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificador alfanumérico único"
+          },
+          "title": {
+            "type": "string",
+            "description": "Título o nombre principal de la actividad"
+          },
+          "category": {
+            "type": "string",
+            "description": "ID de la categoría a la que pertenece"
+          },
+          "categoryName": {
+            "type": "string",
+            "description": "Etiqueta visible corta (ej: 'Indie Rock', 'VR')"
+          },
+          "location": {
+            "type": "string",
+            "description": "Recinto, sala o dirección del lugar"
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90,
+            "description": "Latitud decimal exacta del lugar"
+          },
+          "lng": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180,
+            "description": "Longitud decimal exacta del lugar"
+          },
+          "mapsUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Enlace directo de Google Maps (si se omite, la app lo crea con lat/lng)"
+          },
+          "transit": {
+            "type": "string",
+            "description": "Combinación recomendada de metro, tren o tiempo a pie"
+          },
+          "priceMin": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Precio base mínimo en euros (0 si es gratis)"
+          },
+          "priceMax": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Precio máximo orientativo"
+          },
+          "priceDisplay": {
+            "type": "string",
+            "description": "Texto visible del precio (ej: 'Gratuito', '18 - 24 €')"
+          },
+          "schedule": {
+            "type": "string",
+            "description": "Días y horarios disponibles durante el viaje"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Resumen conciso para la tarjeta"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción extensa para el modal de detalle"
+          },
+          "tip": {
+            "type": "string",
+            "description": "Recomendación práctica o consejo del plan"
+          }
+        }
+      }
+    }
+  }
+}

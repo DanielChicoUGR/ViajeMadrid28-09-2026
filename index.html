@@ -1,2040 +1,1423 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Madrid Weekend Explorer | Fin de Semana del 18 de Septiembre</title>
-  
-  <meta name="theme-color" content="#0F172A">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Madrid 18S">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='128' fill='%23C62828'/%3E%3Cpath d='M256 60 L310 202 L452 256 L310 310 L256 452 L202 310 L60 256 L202 202 Z' fill='%23F59E0B'/%3E%3Ccircle cx='256' cy='256' r='36' fill='%23FFFFFF'/%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='128' fill='%23C62828'/%3E%3Cpath d='M256 60 L310 202 L452 256 L310 310 L256 452 L202 310 L60 256 L202 202 Z' fill='%23F59E0B'/%3E%3Ccircle cx='256' cy='256' r='36' fill='%23FFFFFF'/%3E%3C/svg%3E">
-  
-  <!-- Web Manifest embebido en Base64 Data URI -->
-  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiTWFkcmlkIFdlZWtlbmQgRXhwbG9yZXIiLCJzaG9ydF9uYW1lIjoiTWFkcmlkIDE4UyIsImRlc2NyaXB0aW9uIjoiR3XD raptIGRlIGFjdGl2aWRhZGVzLCBtw7pzaWNhIHkgb2NpbyBlbiBNYWRyaWQiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwRjE3MkEiLCJ0aGVtZV9jb2xvciI6IiMwRjE3MkEiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJyUzRSUzQ3JlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PScxMjgnIGZpbGw9JyUyM0M2MjgyOCcvJTNFJTNDcGF0aCBkPSdNMjU2IDYwIEwzMTAgMjAyIEw0NTIgMjU2IEwzMTAgMzEwIEwyNTYgNDUyIEwyMDIgMzEwIEw2MCAyNTYgTDIwMiAyMDIgWicgZmlsbD0nJTIzRjU5RTBCJy8lM0UlM0NjaXJjbGUgY3g9JzI1NicgY3k9JzI1Nicgcj0nMzYnIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDL3N2ZyUzRSIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIiwiYXVyb3NlbGVjdCI6dHJ1ZX1dfQ==">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Universal Trip Explorer</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            madrid: {
-              red: '#C62828',
-              gold: '#D97706',
-              dark: '#0F172A',
-              card: '#1E293B',
-              accent: '#3B82F6'
-            }
-          }
-        }
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0F172A" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="TripExplorer" />
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%23E11D48'/%3E%3Cpath d='M256 96c-70.7 0-128 57.3-128 128 0 88 128 224 128 224s128-136 128-224c0-70.7-57.3-128-128-128zm0 176c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z' fill='%23FFFFFF'/%3E%3C/svg%3E"
+    />
+    <link
+      rel="manifest"
+      href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Universal%20Trip%20Explorer%22%2C%22short_name%22%3A%22TripExplorer%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230F172A%22%2C%22theme_color%22%3A%22%230F172A%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27120%27%20fill%3D%27%2523E11D48%27%2F%253E%253Cpath%20d%3D%27M256%2096c-70.7%200-128%2057.3-128%20128%200%2088%20128%20224%20128%20224s128-136%20128-224c0-70.7-57.3-128-128-128zm0%20176c-26.5%200-48-21.5-48-48s21.5-48%2048-48%2048%2021.5%2048%2048-21.5%2048-48%2048z%27%20fill%3D%27%2523FFFFFF%27%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D"
+    />
+
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background-color: #0b0f19;
+        color: #f1f5f9;
       }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.4);
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(148, 163, 184, 0.3);
-      border-radius: 9999px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: rgba(148, 163, 184, 0.6);
-    }
-    .glassmorphism {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .badge-glow {
-      box-shadow: 0 0 12px rgba(217, 119, 6, 0.25);
-    }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
-
-  <header class="sticky top-0 z-40 glassmorphism border-b border-slate-800/80 px-4 lg:px-8 py-3.5 transition-all">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+      }
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col font-sans selection:bg-rose-500 selection:text-white"
+  >
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3 shadow-xl"
+    >
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-amber-500 flex items-center justify-center shadow-lg shadow-red-900/30 text-white font-bold text-lg">
-          <i class="fa-solid fa-compass"></i>
+        <div
+          class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-950/40 flex-shrink-0"
+        >
+          <i class="fa-solid fa-compass text-white text-xl"></i>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="text-lg md:text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">
-              Madrid Weekend Explorer
+            <h1
+              id="header-trip-name"
+              class="text-base font-bold text-white tracking-tight"
+            >
+              Cargando...
             </h1>
-            <span class="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-950/80 text-red-400 border border-red-800/60 hidden sm:inline-block">
-              18 - 20 Sept
-            </span>
+            <span
+              id="header-dates"
+              class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30"
+            ></span>
           </div>
-          <p class="text-xs text-slate-400 hidden sm:block">Centro de operaciones y alternativas de ocio con referencia en Puerta del Sol</p>
+          <button
+            onclick="openBaseLocationModal()"
+            class="text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1.5 transition-colors mt-0.5"
+          >
+            <i class="fa-solid fa-hotel text-amber-500 text-[11px]"></i>
+            <span
+              >Base:
+              <strong id="header-base-name" class="text-slate-200"
+                >Alojamiento</strong
+              ></span
+            >
+            <span
+              class="text-[10px] bg-slate-800 border border-slate-700 px-1.5 py-0.5 rounded text-slate-400 hover:text-white"
+              >Cambiar</span
+            >
+          </button>
         </div>
       </div>
 
-      <div class="flex items-center gap-2.5">
-        <button id="installPwaBtn" class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs md:text-sm font-semibold bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/40 transition shadow-sm hover:scale-[1.02] active:scale-95">
-          <i class="fa-solid fa-download text-emerald-400"></i>
-          <span class="hidden sm:inline">Instalar App</span>
-        </button>
-
-        <button id="surpriseBtn" class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs md:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 transition shadow-sm hover:scale-[1.02] active:scale-95">
-          <i class="fa-solid fa-dice text-amber-400"></i>
-          <span class="hidden md:inline">¡Sorpréndeme!</span>
-        </button>
-
-        <button id="openItineraryBtn" class="relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold bg-gradient-to-r from-amber-500 to-red-600 text-white shadow-lg shadow-red-900/30 hover:opacity-95 transition hover:scale-[1.02] active:scale-95">
-          <i class="fa-solid fa-calendar-check"></i>
-          <span>Mi Plan</span>
-          <span id="itineraryCount" class="w-5 h-5 rounded-full bg-white text-slate-900 text-xs font-black flex items-center justify-center ml-0.5">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <section class="relative bg-gradient-to-b from-slate-900 via-slate-900/60 to-slate-950 border-b border-slate-800/60 pt-8 pb-10 px-4 lg:px-8 overflow-hidden">
-    <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-red-600/10 blur-3xl pointer-events-none"></div>
-    <div class="absolute -left-20 -bottom-20 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-        <div class="max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-800/80 border border-slate-700 text-xs text-amber-400 mb-3">
-            <i class="fa-solid fa-bolt"></i>
-            <span>¿Concierto cancelado? Rediseña tu fin de semana sin límites</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight">
-            Descubre todas las actividades de Madrid por <span class="text-amber-400 underline decoration-red-500 underline-offset-4">precio</span> y <span class="text-red-400">distancia a Sol</span>
-          </h2>
-          <p class="text-sm sm:text-base text-slate-400 mt-2.5">
-            Explora kárting, festivales indie y techno, experiencias de realidad virtual, obras de teatro y exposiciones que clausuran este fin de semana.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full lg:w-auto">
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 text-center">
-            <div id="statTotal" class="text-xl font-bold text-white">25+</div>
-            <div class="text-[11px] text-slate-400">Planes Activos</div>
-          </div>
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 text-center">
-            <div id="statFree" class="text-xl font-bold text-emerald-400">8</div>
-            <div class="text-[11px] text-slate-400">Gratis (0 €)</div>
-          </div>
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 text-center">
-            <div id="statClose" class="text-xl font-bold text-amber-400">&lt; 1 km</div>
-            <div class="text-[11px] text-slate-400">A pie de Sol</div>
-          </div>
-          <div class="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 text-center">
-            <div class="text-xl font-bold text-sky-400">18-20</div>
-            <div class="text-[11px] text-slate-400">Septiembre</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 flex-1 w-full">
-    
-    <!-- Controls Box -->
-    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 mb-8 shadow-xl">
-      <!-- Search and Quick Category Tabs -->
-      <div class="flex flex-col md:flex-row gap-4 mb-5">
-        <div class="relative flex-1">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input type="text" id="searchInput" placeholder="Buscar por nombre, artista, barrio (ej: karting, Prado, Delicias, Goya)..." 
-            class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700/80 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400 transition" />
-        </div>
-        <div class="flex items-center gap-2 self-end w-full md:w-auto">
-          <label class="text-xs text-slate-400 whitespace-nowrap">Ordenar por:</label>
-          <select id="sortSelect" class="w-full md:w-auto px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
-            <option value="distAsc">Distancia a Sol (Más cercano)</option>
-            <option value="distDesc">Distancia a Sol (Más lejano)</option>
-            <option value="priceAsc">Precio (Menor a Mayor)</option>
-            <option value="priceDesc">Precio (Mayor a Menor)</option>
-            <option value="nameAsc">Nombre (A - Z)</option>
+      <!-- Central & Right Controls -->
+      <div class="flex items-center flex-wrap gap-2">
+        <!-- Selector Dinámico de Viajes -->
+        <div class="relative flex items-center">
+          <i
+            class="fa-solid fa-plane-departure absolute left-3 text-cyan-400 text-xs pointer-events-none"
+          ></i>
+          <select
+            id="trip-selector"
+            onchange="onTripSelectChanged(this.value)"
+            class="bg-slate-800 text-white text-xs font-bold pl-8 pr-8 py-2 rounded-xl border border-slate-700 hover:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 appearance-none cursor-pointer shadow-sm"
+          >
+            <option value="" disabled selected>Buscando viajes...</option>
           </select>
+          <i
+            class="fa-solid fa-chevron-down absolute right-3 text-slate-400 text-[10px] pointer-events-none"
+          ></i>
+        </div>
+
+        <!-- Botón Descargar Especificación JSON Schema -->
+        <button
+          onclick="downloadJsonSchemaFile()"
+          title="Descargar especificación trip_schema.json"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all"
+        >
+          <i class="fa-solid fa-file-code text-amber-400"></i>
+          <span class="hidden sm:inline">Schema JSON</span>
+        </button>
+
+        <!-- Botón Gestor / Cargar JSON manual -->
+        <button
+          onclick="openTripManagerModal()"
+          title="Pegar JSON o subir archivo manual"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all"
+        >
+          <i class="fa-solid fa-upload text-cyan-400"></i>
+          <span class="hidden md:inline">Cargar JSON</span>
+        </button>
+
+        <!-- Botón Sorpréndeme -->
+        <button
+          onclick="surpriseMe()"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 hover:border-amber-400/40 transition-all"
+        >
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span class="hidden sm:inline">Aleatorio</span>
+        </button>
+
+        <!-- Botón Mi Plan -->
+        <button
+          onclick="togglePlanDrawer()"
+          class="relative flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white shadow-lg shadow-rose-900/40 transition-all"
+        >
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span class="hidden sm:inline">Mi Plan</span>
+          <span
+            id="plan-badge"
+            class="w-5 h-5 rounded-full bg-white text-rose-700 text-[11px] font-black flex items-center justify-center"
+            >0</span
+          >
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero & Filters -->
+    <section
+      class="relative bg-gradient-to-b from-slate-900 via-slate-900/80 to-[#0b0f19] px-4 lg:px-8 pt-6 pb-6 border-b border-slate-800/80"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-4"
+        >
+          <div>
+            <h2
+              id="hero-title"
+              class="text-2xl sm:text-3xl font-black tracking-tight text-white"
+            >
+              Explora tu destino
+            </h2>
+            <p
+              id="hero-subtitle"
+              class="text-xs sm:text-sm text-slate-400 max-w-2xl mt-1"
+            >
+              Planes y actividades ordenados por distancia desde tu base.
+            </p>
+          </div>
+
+          <div
+            class="flex items-center gap-2 bg-slate-800/60 p-1.5 rounded-xl border border-slate-700/60 self-start md:self-auto"
+          >
+            <button
+              id="view-grid-btn"
+              onclick="setViewMode('grid')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white transition-all shadow"
+            >
+              <i class="fa-solid fa-border-all mr-1.5"></i> Cuadrícula
+            </button>
+            <button
+              id="view-radar-btn"
+              onclick="setViewMode('radar')"
+              class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all"
+            >
+              <i class="fa-solid fa-bullseye mr-1.5"></i> Radar Concéntrico
+            </button>
+          </div>
+        </div>
+
+        <!-- Filters container -->
+        <div
+          class="mt-5 bg-slate-800/40 p-4 rounded-2xl border border-slate-800 backdrop-blur-sm flex flex-col gap-4"
+        >
+          <!-- Search bar -->
+          <div class="relative">
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"
+            ></i>
+            <input
+              type="text"
+              id="search-input"
+              oninput="applyFilters()"
+              placeholder="Buscar por título, recinto, palabras clave..."
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-11 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500"
+            />
+          </div>
+
+          <!-- Sliders -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center"
+          >
+            <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+              <div
+                class="flex justify-between items-center text-xs mb-1.5 font-medium"
+              >
+                <span class="text-slate-400">Presupuesto máx.</span>
+                <span id="price-val" class="font-bold text-amber-400"
+                  >Cualquiera</span
+                >
+              </div>
+              <input
+                type="range"
+                id="price-range"
+                min="0"
+                max="100"
+                step="5"
+                value="100"
+                oninput="
+                  updateFilterLabels();
+                  applyFilters();
+                "
+                class="w-full accent-rose-500 cursor-pointer h-1.5 bg-slate-700 rounded-lg"
+              />
+            </div>
+
+            <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+              <div
+                class="flex justify-between items-center text-xs mb-1.5 font-medium"
+              >
+                <span class="text-slate-400">Radio máx. desde base</span>
+                <span id="dist-val" class="font-bold text-rose-400"
+                  >Todo el radio</span
+                >
+              </div>
+              <input
+                type="range"
+                id="dist-range"
+                min="1"
+                max="50"
+                step="1"
+                value="50"
+                oninput="
+                  updateFilterLabels();
+                  applyFilters();
+                "
+                class="w-full accent-rose-500 cursor-pointer h-1.5 bg-slate-700 rounded-lg"
+              />
+            </div>
+
+            <label
+              class="flex items-center gap-3 bg-slate-900/80 p-3 rounded-xl border border-slate-800 cursor-pointer hover:border-slate-700 transition-all"
+            >
+              <input
+                type="checkbox"
+                id="free-only"
+                onchange="applyFilters()"
+                class="w-4 h-4 rounded text-rose-600 focus:ring-rose-500 bg-slate-800 border-slate-600"
+              />
+              <span class="text-xs font-semibold text-slate-300"
+                >Solo actividades gratuitas</span
+              >
+            </label>
+
+            <button
+              onclick="resetFilters()"
+              class="text-xs font-semibold text-slate-400 hover:text-rose-400 flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl bg-slate-900/50 hover:bg-slate-900 border border-slate-800 transition-all"
+            >
+              <i class="fa-solid fa-arrow-rotate-left"></i> Restablecer filtros
+            </button>
+          </div>
+
+          <!-- Dynamic Category Pills -->
+          <div
+            id="categories-container"
+            class="flex items-center gap-2 overflow-x-auto pb-1 pt-1 custom-scrollbar text-xs"
+          ></div>
         </div>
       </div>
+    </section>
 
-      <!-- Categories Pills -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar text-xs font-medium">
-        <button data-category="all" class="cat-pill active px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-bold whitespace-nowrap transition">
-          Todos los planes
-        </button>
-        <button data-category="festivales" class="cat-pill px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 whitespace-nowrap transition">
-          <i class="fa-solid fa-music mr-1.5 text-purple-400"></i>Música & Festivales
-        </button>
-        <button data-category="adrenalina" class="cat-pill px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 whitespace-nowrap transition">
-          <i class="fa-solid fa-car-burst mr-1.5 text-red-400"></i>Kárting & Deportes
-        </button>
-        <button data-category="vr" class="cat-pill px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 whitespace-nowrap transition">
-          <i class="fa-solid fa-vr-cardboard mr-1.5 text-sky-400"></i>Inmersivo & VR
-        </button>
-        <button data-category="museos" class="cat-pill px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 whitespace-nowrap transition">
-          <i class="fa-solid fa-landmark mr-1.5 text-amber-400"></i>Museos & Arte
-        </button>
-        <button data-category="teatro" class="cat-pill px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 whitespace-nowrap transition">
-          <i class="fa-solid fa-masks-theater mr-1.5 text-pink-400"></i>Musicales & Escena
-        </button>
-        <button data-category="airelibre" class="cat-pill px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 whitespace-nowrap transition">
-          <i class="fa-solid fa-tree mr-1.5 text-emerald-400"></i>Aire Libre & Miradores
-        </button>
+    <!-- Main View -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6">
+      <div class="flex items-center justify-between mb-4">
+        <p class="text-xs text-slate-400 font-medium">
+          Mostrando
+          <span id="filtered-count" class="font-bold text-white">0</span>
+          actividades encontradas
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 mt-4 border-t border-slate-800 text-xs">
-        <div>
-          <div class="flex justify-between text-slate-400 mb-1.5">
-            <span>Precio Máximo:</span>
-            <span id="priceLabel" class="font-bold text-amber-400">Cualquiera (hasta 100 €)</span>
-          </div>
-          <input type="range" id="priceRange" min="0" max="100" step="5" value="100" class="w-full accent-amber-500 cursor-pointer">
+      <div
+        id="grid-view"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+      ></div>
+      <div id="radar-view" class="hidden flex-col gap-8"></div>
+
+      <div
+        id="empty-state"
+        class="hidden text-center py-16 bg-slate-800/30 rounded-2xl border border-slate-800"
+      >
+        <i
+          class="fa-solid fa-location-crosshairs text-4xl text-slate-500 mb-3"
+        ></i>
+        <h3 class="text-base font-bold text-slate-300">
+          No se encontraron actividades
+        </h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto mt-1">
+          Prueba a ampliar los filtros de precio o radio de distancia.
+        </p>
+      </div>
+    </main>
+
+    <!-- Modal: Cambiar Alojamiento / Base -->
+    <div
+      id="base-modal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl flex flex-col gap-4"
+      >
+        <div
+          class="flex items-center justify-between pb-2 border-b border-slate-800"
+        >
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-hotel text-amber-500"></i> Punto de
+            Alojamiento / Base
+          </h3>
+          <button
+            onclick="closeBaseLocationModal()"
+            class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-xs"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
 
-        <div>
-          <div class="flex justify-between text-slate-400 mb-1.5">
-            <span>Distancia Máx. a Sol:</span>
-            <span id="distLabel" class="font-bold text-sky-400">Cualquiera (hasta 10 km)</span>
+        <p class="text-xs text-slate-400">
+          Las distancias y anillos concéntricos se recalcularán automáticamente
+          desde este punto.
+        </p>
+
+        <div class="flex flex-col gap-3 text-xs">
+          <div>
+            <label class="block text-slate-400 mb-1 font-semibold"
+              >Nombre del alojamiento o punto</label
+            >
+            <input
+              type="text"
+              id="base-input-name"
+              placeholder="Ej: Hotel Central, Apartamento..."
+              class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white"
+            />
           </div>
-          <input type="range" id="distRange" min="0.5" max="10" step="0.5" value="10" class="w-full accent-sky-500 cursor-pointer">
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold"
+                >Latitud decimal</label
+              >
+              <input
+                type="number"
+                step="0.0001"
+                id="base-input-lat"
+                placeholder="40.4169"
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white"
+              />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 font-semibold"
+                >Longitud decimal</label
+              >
+              <input
+                type="number"
+                step="0.0001"
+                id="base-input-lng"
+                placeholder="-3.7038"
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white"
+              />
+            </div>
+          </div>
+
+          <button
+            onclick="useCurrentGeolocation()"
+            class="py-2.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 font-bold rounded-xl border border-slate-700 flex items-center justify-center gap-2 transition-all"
+          >
+            <i class="fa-solid fa-crosshairs"></i> Usar mi ubicación GPS actual
+          </button>
         </div>
 
-        <div class="flex items-center justify-start md:justify-end gap-3 pt-2 md:pt-0">
-          <label class="flex items-center gap-2 cursor-pointer select-none text-slate-300">
-            <input type="checkbox" id="freeOnlyCheck" class="rounded bg-slate-800 border-slate-700 text-emerald-500 focus:ring-0 w-4 h-4">
-            <span>Solo planes gratuitos</span>
-          </label>
-          <button id="resetFiltersBtn" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-slate-200 transition">
-            <i class="fa-solid fa-rotate-left mr-1"></i>Limpiar
+        <div class="flex gap-2 pt-2 border-t border-slate-800">
+          <button
+            onclick="closeBaseLocationModal()"
+            class="flex-1 py-2 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl"
+          >
+            Cancelar
+          </button>
+          <button
+            onclick="saveBaseLocationFromModal()"
+            class="flex-1 py-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl"
+          >
+            Guardar y Recalcular
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Active Filter Counter Header -->
-    <div class="flex items-center justify-between mb-6">
-      <div class="text-sm text-slate-400">
-        Mostrando <span id="displayedCount" class="font-bold text-white">0</span> actividades disponibles
-      </div>
-      <div class="flex items-center gap-2">
-        <button id="viewGridBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 text-amber-400 text-xs font-semibold border border-slate-700">
-          <i class="fa-solid fa-grip mr-1"></i>Cuadrícula
-        </button>
-        <button id="viewSolRadarBtn" class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 text-xs font-semibold hover:text-white border border-slate-800">
-          <i class="fa-solid fa-bullseye mr-1"></i>Radar Sol
-        </button>
-      </div>
-    </div>
-
-    <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Injected via JavaScript -->
-    </div>
-
-    <!-- Sol Distance Radar View (Alternative visual mode) -->
-    <div id="radarView" class="hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-8">
-      <div class="flex flex-col items-center justify-center text-center max-w-xl mx-auto mb-6">
-        <div class="w-12 h-12 rounded-full bg-red-950/80 border border-red-500/50 flex items-center justify-center text-red-400 mb-2">
-          <i class="fa-solid fa-location-dot text-xl"></i>
-        </div>
-        <h3 class="text-lg font-bold text-white">Radar Concétrico desde la Puerta del Sol</h3>
-        <p class="text-xs text-slate-400">Descubre cómo se distribuyen los planes según te alejas caminando o en metro desde el Km 0.</p>
-      </div>
-
-      <div class="space-y-6 max-w-4xl mx-auto" id="radarZonesContainer">
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-
-    <!-- No results state -->
-    <div id="emptyState" class="hidden text-center py-16 px-4 bg-slate-900/40 rounded-2xl border border-slate-800">
-      <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 mx-auto mb-4 text-2xl">
-        <i class="fa-solid fa-magnifying-glass-location"></i>
-      </div>
-      <h3 class="text-base font-bold text-slate-200">No encontramos actividades con esos filtros</h3>
-      <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Prueba a aumentar el rango de distancia o desmarcar la casilla de gratuidad para ver todas las alternativas.</p>
-      <button onclick="resetFilters()" class="mt-4 px-4 py-2 rounded-xl bg-amber-500 text-slate-950 text-xs font-bold hover:bg-amber-400 transition">
-        Restablecer todos los filtros
-      </button>
-    </div>
-  </main>
-
-  <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-    <div class="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative animate-in fade-in zoom-in-95 duration-150">
-      <div class="p-6">
-        <button id="closeModalBtn" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <div class="flex items-center gap-2 mb-3">
-          <span id="modalCategoryBadge" class="text-xs px-2.5 py-1 rounded-full font-bold"></span>
-          <span id="modalPriceBadge" class="text-xs px-2.5 py-1 rounded-full font-bold"></span>
-          <span id="modalDistBadge" class="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-semibold border border-slate-700"></span>
+    <!-- Modal: Gestor de Viaje & Importación -->
+    <div
+      id="trip-modal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col gap-4 max-h-[90vh] overflow-y-auto custom-scrollbar"
+      >
+        <div
+          class="flex items-center justify-between pb-2 border-b border-slate-800"
+        >
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-suitcase-rolling text-cyan-400"></i> Gestor
+            del Archivo de Viaje (JSON)
+          </h3>
+          <button
+            onclick="closeTripManagerModal()"
+            class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-xs"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
 
-        <h3 id="modalTitle" class="text-2xl font-black text-white mb-2"></h3>
-        <p id="modalSubtitle" class="text-xs text-amber-400 font-medium mb-4 flex items-center gap-1.5">
-          <i class="fa-solid fa-map-pin"></i>
-          <span id="modalLocationText"></span>
+        <p class="text-xs text-slate-400">
+          Carga un destino subiendo un archivo o pegando el JSON conforme al
+          esquema.
         </p>
 
-        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800/80 mb-5">
-          <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">¿De qué trata?</h4>
-          <p id="modalDescription" class="text-sm text-slate-300 leading-relaxed"></p>
-        </div>
+        <!-- Dropzone -->
+        <label
+          class="border-2 border-dashed border-slate-700 hover:border-cyan-400/50 rounded-xl p-4 text-center cursor-pointer bg-slate-950/40 flex flex-col items-center justify-center gap-1.5 transition-all"
+        >
+          <i class="fa-solid fa-file-code text-cyan-400 text-2xl"></i>
+          <span class="text-xs font-bold text-slate-300"
+            >Seleccionar archivo .json del viaje</span
+          >
+          <input
+            type="file"
+            id="trip-file-input"
+            accept=".json"
+            onchange="handleTripFileSelect(event)"
+            class="hidden"
+          />
+        </label>
 
-        <!-- Details Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-6">
-          <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-800">
-            <span class="text-slate-400 block mb-1"><i class="fa-solid fa-route mr-1.5 text-sky-400"></i>Cómo llegar desde Sol:</span>
-            <span id="modalTransit" class="font-semibold text-slate-200"></span>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-800">
-            <span class="text-slate-400 block mb-1"><i class="fa-solid fa-tag mr-1.5 text-emerald-400"></i>Detalle de Tarifas:</span>
-            <span id="modalDetailedPrice" class="font-semibold text-slate-200"></span>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-800">
-            <span class="text-slate-400 block mb-1"><i class="fa-solid fa-clock mr-1.5 text-amber-400"></i>Fechas / Horario:</span>
-            <span id="modalSchedule" class="font-semibold text-slate-200"></span>
-          </div>
-          <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-800">
-            <span class="text-slate-400 block mb-1"><i class="fa-solid fa-lightbulb mr-1.5 text-yellow-400"></i>Consejo Clave:</span>
-            <span id="modalTip" class="font-semibold text-slate-200"></span>
-          </div>
-        </div>
+        <textarea
+          id="trip-json-textarea"
+          placeholder="O pega aquí el contenido JSON completo del viaje..."
+          class="w-full h-40 bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-300 focus:outline-none focus:border-cyan-500 custom-scrollbar"
+        ></textarea>
 
-        <!-- Actions in Modal -->
-        <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-          <a id="modalMapsLink" href="#" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-1.5 bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-750 transition hover:text-white">
-            <i class="fa-solid fa-map-location-dot text-amber-400"></i>
-            <span>Ver en Google Maps</span>
-          </a>
-          <button id="modalItineraryToggle" class="px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal for Import / Export Itinerary -->
-  <div id="importExportModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-sm">
-    <div class="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-150">
-      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-arrow-right-arrow-left"></i>
-          </div>
-          <div>
-            <h3 class="text-base font-bold text-white">Importar y Exportar Plan</h3>
-            <p class="text-[11px] text-slate-400">Guarda, comparte o restaura tu itinerario personalizado</p>
-          </div>
-        </div>
-        <button id="closeImportExportBtn" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <!-- Tabs Header -->
-      <div class="flex border-b border-slate-800 bg-slate-950/40 text-xs font-semibold">
-        <button id="tabExportBtn" onclick="switchIoTab('export')" class="flex-1 py-3 px-4 text-amber-400 border-b-2 border-amber-400 bg-slate-900/50 flex items-center justify-center gap-2">
-          <i class="fa-solid fa-file-export"></i>
-          <span>Exportar Plan</span>
-        </button>
-        <button id="tabImportBtn" onclick="switchIoTab('import')" class="flex-1 py-3 px-4 text-slate-400 border-b-2 border-transparent hover:text-slate-200 flex items-center justify-center gap-2">
-          <i class="fa-solid fa-file-import"></i>
-          <span>Importar Plan</span>
-        </button>
-      </div>
-
-      <!-- Tab Content Area -->
-      <div class="p-5 overflow-y-auto custom-scrollbar flex-1 space-y-4">
-        <!-- Export View -->
-        <div id="exportViewPanel" class="space-y-4">
-          <p class="text-xs text-slate-300">
-            Exporta tu selección de actividades actual en formato <code class="px-1.5 py-0.5 rounded bg-slate-800 text-amber-400 text-[11px]">JSON</code>. Puedes descargarlo en un archivo o copiar el contenido al portapapeles.
-          </p>
-
-          <div class="flex flex-wrap items-center gap-2.5">
-            <button onclick="downloadPlanFile()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center gap-2 transition shadow-md">
-              <i class="fa-solid fa-download"></i>
-              <span>Descargar archivo .json</span>
-            </button>
-            <button onclick="copyPlanToClipboard()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 flex items-center gap-2 transition hover:text-white">
-              <i class="fa-regular fa-copy"></i>
-              <span>Copiar texto JSON</span>
-            </button>
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-bold uppercase text-slate-400 mb-1.5">Vista previa del archivo:</label>
-            <textarea id="exportJsonPreview" readonly rows="8" class="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-mono text-[11px] focus:outline-none custom-scrollbar select-all"></textarea>
-          </div>
-        </div>
-
-        <!-- Import View -->
-        <div id="importViewPanel" class="hidden space-y-4">
-          <p class="text-xs text-slate-300">
-            Carga un itinerario previo subiendo el archivo <code class="px-1.5 py-0.5 rounded bg-slate-800 text-amber-400 text-[11px]">.json</code> o pegando su contenido directamente.
-          </p>
-
-          <!-- File Upload Zone -->
-          <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-amber-500/70 bg-slate-950/60 rounded-xl p-5 text-center transition cursor-pointer">
-            <input type="file" id="importFileInput" accept=".json" class="hidden">
-            <i class="fa-solid fa-cloud-arrow-up text-2xl text-amber-400 mb-2 block"></i>
-            <span class="text-xs font-bold text-white block">Haz clic para seleccionar o arrastra un archivo .json</span>
-            <span class="text-[10px] text-slate-400 block mt-1">Formato compatible generado por Madrid Weekend Explorer</span>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <div class="h-px bg-slate-800 flex-1"></div>
-            <span class="text-[10px] uppercase font-bold text-slate-500">o pega el texto directamente</span>
-            <div class="h-px bg-slate-800 flex-1"></div>
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-bold uppercase text-slate-400 mb-1.5">Contenido JSON:</label>
-            <textarea id="importJsonTextarea" placeholder='Pega aquí el contenido JSON del plan (ej: {"weekend":"18-20 Septiembre", "items": [...]})' rows="6" class="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-600 font-mono text-[11px] focus:outline-none focus:border-amber-400 custom-scrollbar"></textarea>
-          </div>
-
-          <div class="flex items-center justify-between gap-3 pt-2">
-            <div class="flex items-center gap-2">
-              <input type="checkbox" id="importMergeCheckbox" class="rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-0 w-3.5 h-3.5">
-              <label for="importMergeCheckbox" class="text-xs text-slate-300 cursor-pointer select-none">Combinar con mi plan actual (no reemplazar)</label>
-            </div>
-            <button onclick="importPlanFromText()" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center gap-2 transition">
-              <i class="fa-solid fa-check"></i>
-              <span>Cargar Plan</span>
-            </button>
-          </div>
+        <div class="flex flex-wrap gap-2">
+          <button
+            onclick="downloadJsonSchemaFile()"
+            class="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold rounded-xl border border-slate-700 flex items-center gap-1.5"
+          >
+            <i class="fa-solid fa-download"></i> Schema
+          </button>
+          <button
+            onclick="downloadCurrentTripJson()"
+            class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl border border-slate-700 flex items-center justify-center gap-1.5"
+          >
+            <i class="fa-solid fa-download"></i> Descargar Viaje
+          </button>
+          <button
+            onclick="loadTripFromJsonTextarea()"
+            class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-950/50"
+          >
+            <i class="fa-solid fa-check"></i> Cargar Destino
+          </button>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="itineraryDrawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 bg-slate-900 border-l border-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-    <!-- Drawer Header -->
-    <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
-          <i class="fa-solid fa-clipboard-list"></i>
+    <!-- Detail Modal -->
+    <div
+      id="detail-modal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl flex flex-col gap-4 max-h-[90vh] overflow-y-auto custom-scrollbar"
+      >
+        <div class="flex items-start justify-between">
+          <div>
+            <span
+              id="modal-cat"
+              class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30"
+            ></span>
+            <h3
+              id="modal-title"
+              class="text-lg sm:text-xl font-extrabold text-white mt-1.5"
+            ></h3>
+            <p
+              id="modal-venue"
+              class="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5"
+            >
+              <i class="fa-solid fa-location-dot text-rose-500"></i>
+              <span></span>
+            </p>
+          </div>
+          <button
+            onclick="closeDetailModal()"
+            class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-xs"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 py-2 text-xs">
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-500 uppercase block font-bold"
+              >Distancia a Base</span
+            >
+            <span id="modal-dist" class="font-bold text-white text-sm"></span>
+          </div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-500 uppercase block font-bold"
+              >Precio Orientativo</span
+            >
+            <span
+              id="modal-price"
+              class="font-bold text-amber-400 text-sm"
+            ></span>
+          </div>
+          <div
+            class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 col-span-2 sm:col-span-1"
+          >
+            <span class="text-[10px] text-slate-500 uppercase block font-bold"
+              >Transporte / Acceso</span
+            >
+            <span id="modal-metro" class="font-medium text-slate-300"></span>
+          </div>
+        </div>
+
         <div>
-          <h3 class="text-base font-bold text-white">Tu Fin de Semana</h3>
-          <p class="text-[11px] text-slate-400">18 al 20 de Septiembre</p>
+          <h4
+            class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1"
+          >
+            Horarios & Fechas
+          </h4>
+          <p
+            id="modal-dates"
+            class="text-xs text-slate-300 bg-slate-950 p-2.5 rounded-xl border border-slate-800"
+          ></p>
+        </div>
+
+        <div>
+          <h4
+            class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1"
+          >
+            Descripción
+          </h4>
+          <p
+            id="modal-desc"
+            class="text-xs sm:text-sm text-slate-300 leading-relaxed"
+          ></p>
+        </div>
+
+        <div id="modal-tip-container">
+          <h4
+            class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1"
+          >
+            Consejo Práctico
+          </h4>
+          <p
+            id="modal-tip"
+            class="text-xs text-amber-200/90 bg-amber-950/20 border border-amber-800/30 p-2.5 rounded-xl leading-relaxed"
+          ></p>
+        </div>
+
+        <div
+          class="flex items-center justify-between pt-3 border-t border-slate-800 mt-2 gap-2"
+        >
+          <a
+            id="modal-maps"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl border border-slate-700 flex items-center gap-1.5 transition-all"
+          >
+            <i class="fa-solid fa-diamond-turn-right text-rose-500"></i> Abrir
+            en Google Maps
+          </a>
+          <button
+            id="modal-plan-btn"
+            onclick=""
+            class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-lg shadow-rose-950/40"
+          >
+            <i class="fa-solid fa-plus"></i> Añadir a Mi Plan
+          </button>
         </div>
       </div>
-      <div class="flex items-center gap-1.5">
-        <button id="openIoModalBtn" title="Importar o exportar plan" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-amber-400 hover:text-amber-300 flex items-center justify-center transition">
-          <i class="fa-solid fa-arrow-right-arrow-left text-xs"></i>
-        </button>
-        <button id="closeItineraryBtn" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+    </div>
+
+    <!-- Drawer: Mi Plan -->
+    <div
+      id="plan-drawer-overlay"
+      onclick="togglePlanDrawer()"
+      class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"
+    ></div>
+    <aside
+      id="plan-drawer"
+      class="fixed top-0 right-0 h-full w-full max-w-md bg-slate-900 border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl"
+    >
+      <div
+        class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60"
+      >
+        <div class="flex items-center gap-2.5">
+          <div
+            class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold"
+          >
+            <i class="fa-solid fa-clipboard-list"></i>
+          </div>
+          <div>
+            <h2 class="text-sm font-bold text-white">Mi Itinerario</h2>
+            <p id="drawer-trip-title" class="text-[11px] text-slate-400"></p>
+          </div>
+        </div>
+        <button
+          onclick="togglePlanDrawer()"
+          class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-xs"
+        >
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
-    </div>
 
-    <!-- Drawer Itinerary List -->
-    <div id="itineraryListContainer" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
-      <!-- Injected dynamically -->
-    </div>
+      <div
+        id="plan-items-container"
+        class="flex-1 overflow-y-auto p-4 flex flex-col gap-3 custom-scrollbar"
+      ></div>
 
-    <!-- Drawer Footer / Summary -->
-    <div class="p-4 border-t border-slate-800 bg-slate-950/90 space-y-3">
-      <div class="space-y-1.5 text-xs">
-        <div class="flex justify-between text-slate-400">
-          <span>Planes seleccionados:</span>
-          <span id="itineraryTotalItems" class="font-bold text-white">0</span>
+      <div class="p-4 border-t border-slate-800 bg-slate-950/80">
+        <div class="flex justify-between items-center text-xs mb-1">
+          <span class="text-slate-400">Actividades guardadas:</span>
+          <span id="plan-total-items" class="font-bold text-white">0</span>
         </div>
-        <div class="flex justify-between text-slate-400">
-          <span>Gasto estimado base:</span>
-          <span id="itineraryTotalBudget" class="font-bold text-amber-400">0 €</span>
+        <div class="flex justify-between items-center text-xs mb-3">
+          <span class="text-slate-400">Gasto estimado base:</span>
+          <span
+            id="plan-total-cost"
+            class="font-extrabold text-amber-400 text-sm"
+            >0 €</span
+          >
         </div>
-      </div>
-      <div class="grid grid-cols-2 gap-2 pt-1">
-        <button onclick="openImportExportModal('export')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-amber-400 text-xs font-semibold transition flex items-center justify-center gap-1.5 border border-slate-700">
-          <i class="fa-solid fa-file-export text-[11px]"></i>
-          <span>Exportar</span>
-        </button>
-        <button onclick="openImportExportModal('import')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-sky-400 text-xs font-semibold transition flex items-center justify-center gap-1.5 border border-slate-700">
-          <i class="fa-solid fa-file-import text-[11px]"></i>
-          <span>Importar</span>
+        <button
+          onclick="clearPlan()"
+          class="w-full py-2 text-[11px] font-semibold text-slate-400 hover:text-rose-400 transition-colors"
+        >
+          Vaciar mi itinerario
         </button>
       </div>
-      <button id="clearItineraryBtn" class="w-full py-2 rounded-xl bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-slate-300 text-xs font-semibold transition border border-slate-800">
-        Vaciar mi itinerario
-      </button>
+    </aside>
+
+    <!-- Notification Toast -->
+    <div
+      id="toast"
+      class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-slate-800 border border-slate-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 pointer-events-none"
+    >
+      <i id="toast-icon" class="fa-solid fa-check text-emerald-400"></i>
+      <span id="toast-msg">Mensaje</span>
     </div>
-  </div>
 
-  <!-- Toast Notification System (No alert) -->
-  <div id="toast" class="fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs font-semibold shadow-2xl flex items-center gap-2.5 transform translate-y-20 opacity-0 transition-all duration-200 pointer-events-none">
-    <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
-    <span id="toastMsg">Mensaje</span>
-  </div>
-
-  <script>
-   const ACTIVITIES_DATA = [
- 
-      // =================================================================
-      // 1. AIRE LIBRE, FERIAS, FIESTAS Y RUTAS ("airelibre")
-      // =================================================================
-      {
-        id: "puerta-sol",
-        title: "Puerta del Sol & Plaza Mayor",
-        category: "airelibre",
-        categoryName: "Icono Urbano",
-        location: "Km Cero y Madrid de los Austrias",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Puerta+del+Sol+Madrid",
-        distanceKm: 0.0,
-        distanceDisplay: "0 m (Epicentro)",
-        transit: "Ubicación inicial de referencia",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Acceso libre 24/7",
-        summary: "El eje monumental de la ciudad: la estatua del Oso y el Madroño, la Casa de Correos y las terrazas castellanas.",
-        description: "Perfecto para comenzar cualquier mañana o disfrutar de la animación nocturna de mimos y terrazas. Al lado se encuentran tabernas castizas con bocadillos de calamares y el bullicio tradicional madrileño.",
-        tip: "Fotografía la placa del Kilómetro 0 frente a la Casa de Correos a primera hora sin colas."
-      },
-      {
-        id: "free-tour-nocturno",
-        title: "Free Tour Nocturno: Madrid Iluminado",
-        category: "airelibre",
-        categoryName: "Ruta Guiada",
-        location: "Puerta del Sol (Estatua Carlos III)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Estatua+Carlos+III+Puerta+del+Sol+Madrid",
-        distanceKm: 0.0,
-        distanceDisplay: "0 m de Sol",
-        transit: "Salida directa en la misma plaza de Sol",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito (propina libre)",
-        schedule: "Vie 18, Sáb 19 y Dom 20 a las 19:30 h y 21:00 h",
-        summary: "Recorrido nocturno de 2 horas por fachadas iluminadas, misterios de la Inquisición y leyendas urbanas.",
-        description: "Permite contemplar la monumentalidad del Madrid histórico iluminado al anochecer. Conecta la Plaza Mayor, la Plaza de la Villa y el Palacio Real mientras el guía desgrana anécdotas cortesanas e intrigas palaciegas.",
-        tip: "Reserva tu plaza con antelación en Civitatis para asegurar cupo en el pase de las 19:30 h."
-      },
-      {
-        id: "free-tour-austrias",
-        title: "Free Tour del Madrid de los Austrias (SANDEMANS)",
-        category: "airelibre",
-        categoryName: "Ruta Histórica",
-        location: "Plaza Mayor (Estatua Felipe III)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Estatua+Felipe+III+Plaza+Mayor+Madrid",
-        distanceKm: 0.3,
-        distanceDisplay: "300 m de Sol",
-        transit: "4 min a pie desde Sol por calle Mayor o Postas",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito (propina libre)",
-        schedule: "Pases diarios a las 10:00 h, 14:00 h y 15:00 h",
-        summary: "Paseo a pie documentado por la dinastía Habsburgo, la muralla medieval y el Palacio Real.",
-        description: "La mejor toma de contacto para ubicarse en la capital: 2,5 horas de recorrido peatonal explorando la arquitectura del Siglo de Oro, conventos históricos, la Plaza de la Villa y la Catedral de la Almudena.",
-        tip: "El turno de las 10:00 h de la mañana es ideal para orientarte antes de ir de tapas por la zona centro."
-      },
-      {
-        id: "mercado-ranas",
-        title: "Mercado de las Ranas (Edición Especial)",
-        category: "airelibre",
-        categoryName: "Mercado Callejero",
-        location: "Barrio de las Letras (Calle Huertas)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+de+las+Huertas+Madrid",
-        distanceKm: 0.7,
-        distanceDisplay: "700 m de Sol",
-        transit: "7 min a pie (Metro Antón Martín)",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Sábado 19 de Septiembre (11:00 a 20:00 h)",
-        summary: "Artesanos, diseñadores e ilustradores sacan sus creaciones a las aceras peatonales con ambiente de vermut.",
-        description: "Inspirado en mercados como Portobello o el Soho neoyorquino, los anticuarios y locales del Barrio de las Letras organizan puestos al aire libre amenizados por música acústica y citas literarias grabadas en los adoquines.",
-        tip: "Empieza a las 12:30 h combinándolo con un vermut de grifo en las tabernas de la calle Huertas."
-      },
-      {
-        id: "templo-debod",
-        title: "Templo de Debod y Puesta de Sol",
-        category: "airelibre",
-        categoryName: "Mirador Histórico",
-        location: "Calle de Ferraz, 1 (Parque de la Montaña)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Templo+de+Debod+Madrid",
-        distanceKm: 1.5,
-        distanceDisplay: "1,5 km de Sol",
-        transit: "20 min a pie (Metro Plaza de España)",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Parque 24/7; Interior 10:00 a 19:30 h",
-        summary: "Templo nubio del siglo II a.C. donado por Egipto, con uno de los mejores atardeceres panorámicos de la capital.",
-        description: "Ofrece vistas privilegiadas sobre la Casa de Campo, el Palacio Real y la Catedral de la Almudena al caer el sol. Su interior conserva relieves originales y maquetas históricas accesibles con control de aforo.",
-        tip: "Llega unos 40 minutos antes del ocaso para encontrar sitio en la barandilla con vistas a la sierra."
-      },
-      {
-        id: "parque-retiro",
-        title: "Parque del Retiro & Palacio de Cristal",
-        category: "airelibre",
-        categoryName: "Naturaleza y Arte",
-        location: "Plaza de la Independencia, 7",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Parque+del+Retiro+Madrid",
-        distanceKm: 1.6,
-        distanceDisplay: "1,6 km de Sol",
-        transit: "20 min a pie (Metro Retiro o Ibiza)",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Abierto de 06:00 a 22:00 h",
-        summary: "El pulmón verde Patrimonio de la Humanidad: estanque con barcas, jardines botánicos e instalaciones artísticas.",
-        description: "El Palacio de Cristal alberga instalaciones escultóricas del Museo Reina Sofía con entrada gratuita. Su entorno reúne músicos callejeros, la rosaleda y el monumento a Alfonso XII.",
-        tip: "Alquila una barca de remos a primera hora de la mañana para disfrutar del estanque con total calma."
-      },
-      {
-        id: "fiestas-lucero",
-        title: "Fiestas Populares de Lucero (50 Aniversario)",
-        category: "airelibre",
-        categoryName: "Fiestas y Verbenas",
-        location: "Recinto Ferial de Lucero (Calle Alhambra 24)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+de+la+Alhambra+24+Madrid",
-        distanceKm: 4.7,
-        distanceDisplay: "4,7 km de Sol",
-        transit: "12 min (Metro L6 Lucero o Laguna)",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Vie 18 (20h), Sáb 19 (21h Whisky Caravan) y Dom 20",
-        summary: "Verbena popular con concierto en abierto de Whisky Caravan, chotis castizo y orquesta nocturna.",
-        description: "Celebración especial del medio siglo del barrio con festival de bandas de rock urbano, campeonato de baloncesto 3x3, degustación comunitaria de cocido y verbenas hasta la madrugada.",
-        tip: "El sábado a las 21:00 h es el momento estelar con el directo de Whisky Caravan y la orquesta posterior."
-      },
-      {
-        id: "fiestas-barajas",
-        title: "Fiestas Ntra. Sra. de la Soledad de Barajas",
-        category: "airelibre",
-        categoryName: "Tradición Castellana",
-        location: "Plaza Mayor de Barajas",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Plaza+Mayor+de+Barajas+Madrid",
-        distanceKm: 14.2,
-        distanceDisplay: "14,2 km de Sol",
-        transit: "20 min (Metro L8 Barajas directo)",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Sábado 19 y Domingo 20 de Septiembre",
-        summary: "Ambiente tradicional de villa castellana en una plaza mayor porticada con procesiones históricas.",
-        description: "El casco antiguo de Barajas conserva su entramado de pueblo castellano. Durante el fin de semana celebra actos patronales solemnes, pasacalles tradicionales y terrazas con ambiente ferial.",
-        tip: "El domingo a las 19:00 h tiene lugar el traslado procesional de vuelta hacia la ermita histórica."
-      },
-
-      // =================================================================
-      // 2. MÚSICA EN DIRECTO, CLUBBING Y FESTIVALES ("musica")
-      // =================================================================
-      {
-        id: "la-yegros",
-        title: "La Yegros en Concierto (Nu-Cumbia)",
-        category: "musica",
-        categoryName: "Concierto Latino",
-        location: "Teatro Eslava (Calle Arenal 11)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Teatro+Eslava+Madrid",
-        distanceKm: 0.2,
-        distanceDisplay: "200 m de Sol",
-        transit: "2 min a pie desde la Puerta del Sol",
-        priceMin: 18,
-        priceMax: 24,
-        priceDisplay: "18 - 24 €",
-        schedule: "Viernes 18 de Septiembre (21:00 h)",
-        summary: "La reina de la cumbia experimental argentina llena el mítico Teatro Eslava con fiesta bailable.",
-        description: "Fusión de folclore tradicional sudamericano, chamamé y electrónica contemporánea en un formato dinámico. Una alternativa inmediata para quienes buscan concierto festivo a escasos pasos de Sol.",
-        tip: "Llega antes de las 20:30 h para coger buena ubicación en la pista frente al escenario."
-      },
-      {
-        id: "ciclo-mazo",
-        title: "Ciclo MAZO: Pedro Ladroga & CORTE!",
-        category: "musica",
-        categoryName: "Vanguardia Urbana",
-        location: "Sala Copérnico / Sala El Sol",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sala+El+Sol+Madrid",
-        distanceKm: 0.4,
-        distanceDisplay: "400 m de Sol (El Sol)",
-        transit: "4 min a pie (El Sol) / Metro L3 Moncloa (Copérnico)",
-        priceMin: 14,
-        priceMax: 18,
-        priceDisplay: "14 - 18 €",
-        schedule: "Vie 18 (Copérnico 20:30h) y Sáb 19 (El Sol 21:00h)",
-        summary: "Trap experimental, sintetizadores y post-punk en los templos del clubbing del centro.",
-        description: "El ciclo MAZO reúne a los artistas más inquietos del panorama emergente nacional. Actuaciones de contacto físico inmediato sin barreras en salas míticas como El Sol.",
-        tip: "La sesión del sábado de CORTE! en El Sol te sitúa en pleno centro a escasos minutos a pie de Sol."
-      },
-      {
-        id: "mondo-disko",
-        title: "Mondo Disko: Southstar b2b DJ Swisherman",
-        category: "musica",
-        categoryName: "Clubbing Electrónico",
-        location: "Sala But (Calle Barceló 11)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sala+But+Madrid",
-        distanceKm: 1.3,
-        distanceDisplay: "1,3 km de Sol",
-        transit: "6 min (Metro L1 Tribunal)",
-        priceMin: 20,
-        priceMax: 30,
-        priceDisplay: "20 - 30 €",
-        schedule: "Sábado 19: Tardeo (15:00-23:00) + Noche (23:59-06:00)",
-        summary: "El templo madrileño de la electrónica con sesión doble de hard groove y eurodance bailable.",
-        description: "Mondo Disko traslada la energía de los grandes clubes europeos con un sistema de sonido reforzado y una cuidada selección de DJs internacionales.",
-        tip: "La sesión diurna de tardeo (15:00 a 23:00 h) es la opción ideal si no quieres trasnochar."
-      },
-      {
-        id: "mac-demarco",
-        title: "Mac DeMarco en Concierto (Gira Europea)",
-        category: "musica",
-        categoryName: "Indie Rock",
-        location: "Sala La Riviera (Paseo Virgen del Puerto)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sala+La+Riviera+Madrid",
-        distanceKm: 2.4,
-        distanceDisplay: "2,4 km de Sol",
-        transit: "12 min (Metro Príncipe Pío L6/L10)",
-        priceMin: 60,
-        priceMax: 200,
-        priceDisplay: "60 - 200 €",
-        schedule: "Viernes 18 de Septiembre (21:00 h)",
-        summary: "El icono del slacker pop aterriza en La Riviera en una velada íntima de guitarras analógicas.",
-        description: "Concierto exclusivo en sala que sustituye cualquier gran festival con un ambiente distendido y directo junto a Madrid Río, lleno de psicodelia y calidez sonora.",
-        tip: "Aprovecha para bajar dando un paseo por el parque de Madrid Río antes de entrar a la sala."
-      },
-      {
-        id: "ciro-persas",
-        title: "Ciro y los Persas en Directo",
-        category: "musica",
-        categoryName: "Rock Argentino",
-        location: "Sala La Riviera (Paseo Virgen del Puerto)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sala+La+Riviera+Madrid",
-        distanceKm: 2.4,
-        distanceDisplay: "2,4 km de Sol",
-        transit: "12 min (Metro Príncipe Pío o Puerta del Ángel)",
-        priceMin: 60,
-        priceMax: 60,
-        priceDisplay: "60,00 €",
-        schedule: "Sábado 19 y Domingo 20 de Septiembre (20:30 h)",
-        summary: "Fuerza y carisma del rock rioplatense durante más de dos horas de recital ininterrumpido.",
-        description: "Andrés Ciro Martínez y su banda presentan un repertorio cargado de himnos en doble función de fin de semana, con la cercanía que ofrece la icónica pista de La Riviera.",
-        tip: "Si tu agenda está apretada el sábado, la sesión dominical suele tener acceso más fluido."
-      },
-      {
-        id: "airbag-vistalegre",
-        title: "Airbag en Concierto (The Black Box)",
-        category: "musica",
-        categoryName: "Pop Punk / Surf",
-        location: "Palacio Vistalegre (Carabanchel)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Palacio+Vistalegre+Madrid",
-        distanceKm: 4.8,
-        distanceDisplay: "4,8 km de Sol",
-        transit: "15 min (Metro L5 Vista Alegre)",
-        priceMin: 56.5,
-        priceMax: 80,
-        priceDisplay: "56,50 - 80 €",
-        schedule: "Sábado 19 de Septiembre (21:00 h)",
-        summary: "Ráfagas de distorsión, letras generacionales y coros pegadizos en la caja acústica de Vistalegre.",
-        description: "El trío malagueño garantiza un directo cargado de adrenalina y baile desinhibido. El aforo compacto de la Black Box asegura una atmósfera electrizante.",
-        tip: "La línea 5 de Metro te deja en la puerta de Vistalegre en solo 15 minutos directos desde Gran Vía."
-      },
-      {
-        id: "jardin-delicias",
-        title: "Festival Jardín de las Delicias",
-        category: "musica",
-        categoryName: "Macrofestival Indie",
-        location: "Recinto Cantarranas (Univ. Complutense)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cantarranas+Universidad+Complutense+Madrid",
-        distanceKm: 4.8,
-        distanceDisplay: "4,8 km de Sol",
-        transit: "15 min (Metro L6 Ciudad Universitaria)",
-        priceMin: 55,
-        priceMax: 75,
-        priceDisplay: "Desde 55,00 €",
-        schedule: "Viernes 18 y Sábado 19 de Septiembre",
-        summary: "La despedida festiva del verano: pop y rock nacional en césped natural con múltiples escenarios.",
-        description: "Grandes nombres del pop-rock español combinados con teatro de calle, espectáculos circenses y puestos gastronómicos en el campus universitario.",
-        tip: "Lleva calzado cómodo para césped y accede por la estación de Ciudad Universitaria para evitar atascos."
-      },
-      {
-        id: "brava-madrid",
-        title: "Festival Brava Madrid",
-        category: "musica",
-        categoryName: "Pop & Drag Show",
-        location: "Caja Mágica (Camino de Perales 23)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Caja+Magica+Madrid",
-        distanceKm: 5.5,
-        distanceDisplay: "5,5 km de Sol",
-        transit: "20 min (Metro L3 San Fermín-Orcasur)",
-        priceMin: 40,
-        priceMax: 65,
-        priceDisplay: "Desde 40,00 €",
-        schedule: "Viernes 18 y Sábado 19 de Septiembre (16:00-02:00)",
-        summary: "El encuentro de diversidad sonora más llamativo: pop, reggaetón, moda y espectáculos drag.",
-        description: "Tres escenarios temáticos en la monumental arquitectura de Dominique Perrault, con un ambiente festivo y estilismos atrevidos.",
-        tip: "La línea 3 de Metro conecta directamente la Puerta del Sol con la estación de San Fermín sin transbordos."
-      },
-      {
-        id: "time-warp",
-        title: "Time Warp Spain (Techno Festival)",
-        category: "musica",
-        categoryName: "Techno Internacional",
-        location: "Recinto Ferial IFEMA",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=IFEMA+Madrid",
-        distanceKm: 11.5,
-        distanceDisplay: "11,5 km de Sol",
-        transit: "20 min (Metro L8 Feria de Madrid)",
-        priceMin: 45,
-        priceMax: 75,
-        priceDisplay: "Desde 45,00 €",
-        schedule: "Viernes 18 y Sábado 19 de Septiembre (22:00-06:00)",
-        summary: "El macroevento alemán de música electrónica despliega su producción sonora en pabellones cubiertos.",
-        description: "Diseño audiovisual monumental, techos cinéticos e iluminación de alta fidelidad con los principales exponentes del techno mundial.",
-        tip: "Usa el Metro nocturno o taxis compartidos a la salida para volver cómodamente al centro."
-      },
-
-      // =================================================================
-      // 3. MOTOR, KÁRTING Y DEPORTES ACTIVOS ("karting")
-      // =================================================================
-      {
-        id: "carlos-sainz-karting",
-        title: "Carlos Sainz Karting Indoor Madrid",
-        category: "karting",
-        categoryName: "Kárting Indoor",
-        location: "Calle de Sepúlveda, 3 (Madrid Centro)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Carlos+Sainz+Center+Calle+Sepulveda+Madrid",
-        distanceKm: 3.5,
-        distanceDisplay: "3,5 km de Sol",
-        transit: "15 min (Metro L6 Puerta del Ángel)",
-        priceMin: 19,
-        priceMax: 35,
-        priceDisplay: "Desde 19,00 €",
-        schedule: "Vie 18 (18-23h) | Sáb y Dom (10-23h)",
-        summary: "Circuito cubierto multinivel con asfalto técnico de competición y cronometraje F1 en tiempo real.",
-        description: "Instalación de referencia en Europa con karts eléctricos rápidos y seguros. Cuenta con pantallas de telemetría y zona de restauración para relajarse tras las tandas.",
-        tip: "Reserva las tandas con antelación online para asegurar tu franja horaria sin esperas."
-      },
-      {
-        id: "f1-arcade",
-        title: "F1 Arcade Simracing Experience",
-        category: "karting",
-        categoryName: "Simulador F1",
-        location: "Paseo de la Castellana, 103",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Paseo+de+la+Castellana+103+Madrid",
-        distanceKm: 4.3,
-        distanceDisplay: "4,3 km de Sol",
-        transit: "8 min (Cercanías Sol a Nuevos Ministerios)",
-        priceMin: 25,
-        priceMax: 59.9,
-        priceDisplay: "25 - 59,90 €",
-        schedule: "Viernes a Domingo: 12:30 a 00:30 h (+18 noche)",
-        summary: "Simuladores oficiales de Fórmula 1 con movimiento electromecánico y desafíos cara a cara.",
-        description: "Cockpits de competición que recrean trazados mundiales en carreras multijugador, integrados en un espacio social con coctelería y gastronomía.",
-        tip: "El pack Head-to-Head para dos participantes incluye cinco carreras consecutivas."
-      },
-      {
-        id: "sharma-climbing",
-        title: "Sharma Climbing: Escalada y Búlder",
-        category: "karting",
-        categoryName: "Escalada Urbana",
-        location: "Calle de Julián Camarillo, 55",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sharma+Climbing+Madrid",
-        distanceKm: 7.2,
-        distanceDisplay: "7,2 km de Sol",
-        transit: "20 min (Metro L5 Suanzes)",
-        priceMin: 16,
-        priceMax: 22,
-        priceDisplay: "Desde 16,00 €",
-        schedule: "Viernes a Domingo: 09:00 a 22:00 h",
-        summary: "El rocódromo de mayor envergadura de Madrid con 4.000 m² de bloques y vías de cuerda.",
-        description: "Fundado por la leyenda de la escalada Chris Sharma. Muros con autoaseguradores aptos tanto para principiantes como para escaladores técnicos.",
-        tip: "Disponen de alquiler completo de pies de gato y arnés en la propia recepción."
-      },
-      {
-        id: "windobona",
-        title: "Túnel de Viento Windobona",
-        category: "karting",
-        categoryName: "Caída Libre",
-        location: "Calle de la Calderilla, 16",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Windobona+Indoor+Skydiving+Madrid",
-        distanceKm: 8.5,
-        distanceDisplay: "8,5 km de Sol",
-        transit: "25 min (Metro L11 La Peseta)",
-        priceMin: 49,
-        priceMax: 89,
-        priceDisplay: "Desde 49,00 €",
-        schedule: "Viernes a Domingo: 10:00 a 21:00 h",
-        summary: "Siente la ingravidez en la cámara de viento de cristal más avanzada del país.",
-        description: "Recrea la caída libre de un salto en paracaídas a velocidades de hasta 280 km/h en un entorno controlado con instructor individual.",
-        tip: "Llega 45 minutos antes de tu turno para la sesión técnica de instrucción previa."
-      },
-      {
-        id: "karting-rivas",
-        title: "Tandas Libres & GP en Karting Rivas",
-        category: "karting",
-        categoryName: "Kárting Exterior",
-        location: "Calle de la Fundición, 89 (Rivas-Vaciamadrid)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Karting+Rivas+Madrid",
-        distanceKm: 18.5,
-        distanceDisplay: "18,5 km de Sol",
-        transit: "35 min (Metro L9 Rivas Urbanizaciones / Bus 334)",
-        priceMin: 18,
-        priceMax: 45,
-        priceDisplay: "18 - 45 €",
-        schedule: "Vie (12-23h), Sáb (10-23h), Dom (11-22:30h)",
-        summary: "Trazado al aire libre con chicanes y karts Sodikart RT10 de 270cc con telemetría en tiempo real.",
-        description: "Circuito exterior técnico con amplias escapatorias y curvas peraltadas que exprimen la potencia de los motores de cuatro tiempos.",
-        tip: "El bono de dos tandas de 10 minutos sale a 30,00 € y permite comparar tus tiempos de vuelta."
-      },
-      {
-        id: "karting-burgueno",
-        title: "Competición Pro Karting Ángel Burgueño",
-        category: "karting",
-        categoryName: "Kárting Pro 2T",
-        location: "Autovía M-607, km 41 (Pedrezuela)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Karting+Angel+Burgueno+Pedrezuela",
-        distanceKm: 44.0,
-        distanceDisplay: "44 km de Sol",
-        transit: "35 min en coche / Cercanías C4 + Bus 725",
-        priceMin: 18,
-        priceMax: 40,
-        priceDisplay: "18 - 40 €",
-        schedule: "Viernes 10-21h | Sáb 13-21h | Dom 13-20h",
-        summary: "Circuito exterior con fuertes desniveles y karts de dos tiempos Rotax para pilotos experimentados.",
-        description: "Concebido por un piloto profesional, sus curvas rápidas elevan las fuerzas laterales por encima de la media de pistas recreativas.",
-        tip: "Si tienes experiencia previa en kárting, solicita la tanda con motorización Rotax 2T."
-      },
-
-      // =================================================================
-      // 4. REALIDAD VIRTUAL Y EXPERIENCIAS INMERSIVAS ("vr")
-      // =================================================================
-      {
-        id: "virtual-arena",
-        title: "Virtual Arena: VR Free-Roam 500 m²",
-        category: "vr",
-        categoryName: "VR Multijugador",
-        location: "Calle de Tomás Bretón, 52 (Delicias)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Virtual+Arena+Tomas+Breton+52+Madrid",
-        distanceKm: 2.7,
-        distanceDisplay: "2,7 km de Sol",
-        transit: "10 min (Metro L3 Delicias)",
-        priceMin: 25,
-        priceMax: 37,
-        priceDisplay: "25 - 37 €",
-        schedule: "Vie (17:30-22h), Sáb (11:30-22h), Dom (11:30-21:15h)",
-        summary: "La mayor sala de realidad virtual sin cables de España: desplazamiento libre en 500 m².",
-        description: "Equipamiento de última generación que permite recorrer mundos fantásticos o de supervivencia apocalíptica en equipos cooperativos.",
-        tip: "La experiencia 'The Day After' es la más recomendada para grupos que buscan acción coordinada."
-      },
-      {
-        id: "human-universe",
-        title: "Human Universe – The Experience",
-        category: "vr",
-        categoryName: "Inmersivo Anatómico",
-        location: "Espacio Delicias (Paseo de las Delicias 61)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Espacio+Delicias+Madrid",
-        distanceKm: 2.8,
-        distanceDisplay: "2,8 km de Sol",
-        transit: "12 min (Metro L3 Delicias)",
-        priceMin: 21.38,
-        priceMax: 24.75,
-        priceDisplay: "Desde 21,38 €",
-        schedule: "Viernes a Domingo: 10:00 a 21:00 h (Pases c/ 30 min)",
-        summary: "Viaje al interior del cuerpo humano mediante realidad virtual, pantallas 3D y videomapping.",
-        description: "Estreno mundial en la Carpa Catedral de Espacio Delicias. Recorre el flujo sanguíneo, interactúa con órganos vitales y explora las redes neuronales cerebrales.",
-        tip: "Combínalo con una visita a los food trucks situados en el exterior del recinto."
-      },
-      {
-        id: "zero-latency",
-        title: "Zero Latency: VR Táctica Multijugador",
-        category: "vr",
-        categoryName: "Shooter VR",
-        location: "Calle de Londres, 25 (Salamanca)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Zero+Latency+Calle+Londres+25+Madrid",
-        distanceKm: 4.1,
-        distanceDisplay: "4,1 km de Sol",
-        transit: "14 min (Metro L2/L5 Ventas)",
-        priceMin: 22,
-        priceMax: 35,
-        priceDisplay: "22 - 35 €",
-        schedule: "Vie (16-22:30h), Sáb (11-22:30h), Dom (11-22:00h)",
-        summary: "Shooter táctico a escala real con sensores milimétricos y réplicas de armamento.",
-        description: "Referencia internacional de realidad virtual táctica. Desplázate con libertad en escuadrones de hasta ocho personas comunicándote por radio.",
-        tip: "Usa ropa ligera, ya que el dinamismo del juego exige constante movimiento físico."
-      },
-      {
-        id: "zarzuela-drones",
-        title: "DroneArt Show Nocturno (1.200 Drones)",
-        category: "vr",
-        categoryName: "Show Lumínico",
-        location: "Hipódromo de la Zarzuela",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hipodromo+de+la+Zarzuela+Madrid",
-        distanceKm: 9.0,
-        distanceDisplay: "9,0 km de Sol",
-        transit: "15 min en bus lanzadera desde Moncloa",
-        priceMin: 25,
-        priceMax: 35,
-        priceDisplay: "25 - 35 €",
-        schedule: "Viernes 18 de Septiembre (21:30 h)",
-        summary: "Despliegue nocturno de más de 1.200 drones recreando gigantescas esculturas de luz coreografiadas.",
-        description: "Espectáculo visual al aire libre en los jardines del hipódromo con sincronización musical, food trucks y áreas de cóctel bajo las estrellas.",
-        tip: "Lleva una chaqueta ligera para la noche abierta y acude con tiempo para cenar en los puestos gourmet."
-      },
-
-      // =================================================================
-      // 5. TEATRO, ESCENA Y MUSICALES ("escena")
-      // =================================================================
-      {
-        id: "personas-lugares",
-        title: "Personas, Lugares y Cosas (Estreno Teatral)",
-        category: "escena",
-        categoryName: "Drama Británico",
-        location: "Teatro Español (Plaza de Santa Ana)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Teatro+Espanol+Plaza+Santa+Ana+Madrid",
-        distanceKm: 0.5,
-        distanceDisplay: "500 m de Sol",
-        transit: "5 min a pie desde la Puerta del Sol",
-        priceMin: 6,
-        priceMax: 22,
-        priceDisplay: "6 - 22 €",
-        schedule: "Sábado 19 y Domingo 20 de Septiembre (19:00 h)",
-        summary: "El aclamado éxito londinense de Duncan Macmillan con un despliegue audiovisual electrizante.",
-        description: "Una inmersión teatral en el proceso de adicción y desintoxicación contemporáneo en la Sala Principal del teatro más antiguo de Europa.",
-        tip: "Las entradas en butaca de paraíso son especialmente asequibles (desde 6 €) y gozan de excelente acústica."
-      },
-      {
-        id: "addams-musical",
-        title: "La Familia Addams, El Musical (Estreno)",
-        category: "escena",
-        categoryName: "Gran Musical",
-        location: "Teatro Calderón (Calle Atocha 18)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Teatro+Calderon+Madrid",
-        distanceKm: 0.6,
-        distanceDisplay: "600 m de Sol",
-        transit: "6 min a pie (Metro Tirso de Molina)",
-        priceMin: 25,
-        priceMax: 65,
-        priceDisplay: "25 - 65 €",
-        schedule: "Viernes 20h | Sábado 17:30 y 21h | Domingo 18h",
-        summary: "Superproducción con orquesta en directo, números corales de jazz y escenografía gótica.",
-        description: "El clan Addams aterriza con un montaje de gran escala cargado de comedia corrosiva, efectos mágicos y vestuario de alta costura teatral.",
-        tip: "La sesión del sábado a las 21:00 h te permite cenar de tapas por La Latina justo al salir."
-      },
-      {
-        id: "rey-leon",
-        title: "El Rey León, El Musical",
-        category: "escena",
-        categoryName: "Musical Broadway",
-        location: "Teatro Lope de Vega (Gran Vía 57)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Teatro+Lope+de+Vega+Madrid",
-        distanceKm: 0.8,
-        distanceDisplay: "800 m de Sol",
-        transit: "9 min a pie (Metro Santo Domingo)",
-        priceMin: 35,
-        priceMax: 95,
-        priceDisplay: "Desde 35,00 €",
-        schedule: "Viernes y Sábado (18 y 22h) | Domingo (18h)",
-        summary: "El mayor fenómeno escénico de la Gran Vía madrileña con máscaras y orquesta sinfónica.",
-        description: "Más de una década de éxito ininterrumpido en Madrid avalan esta recreación de la sabana africana con partitura original de Elton John y Tim Rice.",
-        tip: "Consulta en taquilla física las devoluciones de última hora para conseguir butacas de platea."
-      },
-      {
-        id: "aladdin",
-        title: "Aladdín, El Musical de Broadway",
-        category: "escena",
-        categoryName: "Musical Disney",
-        location: "Teatro Coliseum (Gran Vía 78)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Teatro+Coliseum+Madrid",
-        distanceKm: 0.9,
-        distanceDisplay: "900 m de Sol",
-        transit: "10 min a pie (Metro Plaza de España)",
-        priceMin: 25,
-        priceMax: 85,
-        priceDisplay: "Desde 25,00 €",
-        schedule: "Viernes y Sábado (18 y 22h) | Domingo (17h)",
-        summary: "Puesta en escena deslumbrante con alfombras voladoras y canciones de Alan Menken.",
-        description: "Espectáculo lleno de color y acrobacias con un ritmo cómico vertiginoso comandado por el personaje del Genio.",
-        tip: "Ideal para disfrutar de la Gran Vía iluminada antes de la función de las 22:00 h."
-      },
-      {
-        id: "chocita-loro",
-        title: "Monólogos & Sesión Golfa en Gran Vía",
-        category: "escena",
-        categoryName: "Stand-Up Comedy",
-        location: "La Chocita del Loro (Gran Vía 70)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Chocita+del+Loro+Gran+Via+Madrid",
-        distanceKm: 0.9,
-        distanceDisplay: "900 m de Sol",
-        transit: "10 min a pie (Metro Plaza de España)",
-        priceMin: 10,
-        priceMax: 20,
-        priceDisplay: "10 - 20 €",
-        schedule: "Pases desde 18:30h hasta madrugada golfa (00:15h)",
-        summary: "El café-teatro de referencia de la comedia española: risas sin filtro a centímetros del cómico.",
-        description: "Monologuistas del circuito nacional en mesas con servicio de bebidas. Su amplia variedad de horarios lo convierte en el cierre ideal de cualquier noche.",
-        tip: "La sesión golfa de las 00:15 h del sábado ofrece el ambiente más canalla e improvisado."
-      },
-      {
-        id: "locos-valencia",
-        title: "Los Locos de Valencia (Lope de Vega)",
-        category: "escena",
-        categoryName: "Comedia Clásica",
-        location: "Teatros del Canal (Calle Cea Bermúdez 1)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Teatros+del+Canal+Madrid",
-        distanceKm: 3.2,
-        distanceDisplay: "3,2 km de Sol",
-        transit: "10 min (Metro L2 Canal directo)",
-        priceMin: 9,
-        priceMax: 25,
-        priceDisplay: "9 - 25 €",
-        schedule: "Viernes y Sábado 20:00 h | Domingo 18:30 h (Últimas funciones)",
-        summary: "Última oportunidad para ver la comedia más dinámica del Siglo de Oro con montaje contemporáneo.",
-        description: "Enredo de identidades, fingimientos y humor en un manicomio renacentista representado en la versátil Sala Verde de Teatros del Canal.",
-        tip: "El domingo 20 es la última función de la temporada en la cartelera madrileña."
-      },
-
-      // =================================================================
-      // 6. ARTE, MUSEOS Y EXPOSICIONES ("arte")
-      // =================================================================
-      {
-        id: "alcala-31",
-        title: "Sala Alcalá 31: Fotografía Contemporánea",
-        category: "arte",
-        categoryName: "Fotografía Pop",
-        location: "Calle de Alcalá, 31",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sala+Alcala+31+Madrid",
-        distanceKm: 0.5,
-        distanceDisplay: "500 m de Sol",
-        transit: "6 min a pie desde la Puerta del Sol",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Vie y Sáb: 11:00 a 20:30 h | Dom: 11:00 a 14:00 h",
-        summary: "Muestra bajo la monumental bóveda bancaria de Antonio Palacios con acceso libre.",
-        description: "Imágenes de transgresión, retrato y estética pop en uno de los espacios expositivos más bellos del centro histórico de Madrid.",
-        tip: "Combínalo con un paseo posterior por las terrazas de la calle Sevilla o Canalejas."
-      },
-      {
-        id: "fundacion-telefonica",
-        title: "Espacio Telefónica: Fotografía & Retratos",
-        category: "arte",
-        categoryName: "Cultura Digital",
-        location: "Calle de Fuencarral, 3 (Gran Vía)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Espacio+Fundacion+Telefonica+Madrid",
-        distanceKm: 0.6,
-        distanceDisplay: "600 m de Sol",
-        transit: "7 min a pie (Metro Gran Vía)",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Viernes a Domingo: 10:00 a 20:00 h",
-        summary: "Instalaciones visuales y tecnología en el rascacielos histórico de Telefónica.",
-        description: "Plataforma de arte y reflexión digital en pleno cruce de Gran Vía y Fuencarral, con exposiciones temporales y colección de aparatos de comunicación antiguos.",
-        tip: "Sube a su espectacular escalera helicoidal para fotografiar una de las joyas del art déco madrileño."
-      },
-      {
-        id: "circulo-bellas-artes",
-        title: "Azotea y Salas del Círculo de Bellas Artes",
-        category: "arte",
-        categoryName: "Mirador & Exposiciones",
-        location: "Calle de Alcalá, 42",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Circulo+de+Bellas+Artes+Madrid",
-        distanceKm: 0.65,
-        distanceDisplay: "650 m de Sol",
-        transit: "8 min a pie (Metro Sevilla o Banco de España)",
-        priceMin: 5,
-        priceMax: 5,
-        priceDisplay: "~5,00 €",
-        schedule: "Viernes a Domingo: 11:00 a 01:00 h",
-        summary: "Mirador panorámico de 360 grados sobre los tejados del centro y la Gran Vía.",
-        description: "Bajo la estatua de Minerva se contempla la calle de Alcalá y el edificio Metrópolis. El ticket incluye acceso a las exposiciones de artes plásticas del edificio.",
-        tip: "La luz de media tarde es la más fotogénica para capturar la Gran Vía en perspectiva."
-      },
-      {
-        id: "carmen-laffon",
-        title: "Exposición Carmen Laffón: Variaciones",
-        category: "arte",
-        categoryName: "Pintura Figurativa",
-        location: "Museo Nacional Thyssen-Bornemisza",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Museo+Nacional+Thyssen-Bornemisza+Madrid",
-        distanceKm: 0.8,
-        distanceDisplay: "800 m de Sol",
-        transit: "10 min a pie (Metro Banco de España)",
-        priceMin: 13,
-        priceMax: 14,
-        priceDisplay: "13 - 14 €",
-        schedule: "Vie y Dom: 10-19h | Sábado hasta las 21:00 h",
-        summary: "Últimos días para disfrutar de 80 obras dedicadas a la luz del río Guadalquivir.",
-        description: "Retrospectiva de Carmen Laffón centrada en sus paisajes andaluces y naturalezas muertas mediante pasteles, carboncillos y óleos de gran sutileza.",
-        tip: "El sábado el horario se amplía hasta las 21:00 h con menor afluencia de público."
-      },
-      {
-        id: "museo-prado",
-        title: "Museo Nacional del Prado",
-        category: "arte",
-        categoryName: "Pinacoteca Mayor",
-        location: "Paseo del Prado, s/n",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Museo+del+Prado+Madrid",
-        distanceKm: 1.1,
-        distanceDisplay: "1,1 km de Sol",
-        transit: "15 min a pie (Metro Estación del Arte)",
-        priceMin: 15,
-        priceMax: 15,
-        priceDisplay: "15,00 € (Gratis tardes)",
-        schedule: "Vie y Sáb (10-20h, gratis 18-20h) | Dom (10-19h, gratis 17-19h)",
-        summary: "La pinacoteca cumbre de España: Las Meninas de Velázquez, las pinturas negras de Goya y El Bosco.",
-        description: "Un recorrido imprescindible por la historia del arte europeo en el Paseo del Prado. Las dos últimas horas de cada jornada son de acceso 100% gratuito.",
-        tip: "Para acceder en la franja gratuita de las 18:00 h, colócate en la fila de la Puerta de Goya 25 minutos antes."
-      },
-      {
-        id: "caixaforum-madrid",
-        title: "CaixaForum: Muestra Asurbanipal",
-        category: "arte",
-        categoryName: "Arqueología Imperial",
-        location: "Paseo del Prado, 36",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=CaixaForum+Madrid",
-        distanceKm: 1.2,
-        distanceDisplay: "1,2 km de Sol",
-        transit: "15 min a pie (Metro Estación del Arte)",
-        priceMin: 6,
-        priceMax: 6,
-        priceDisplay: "6,00 € (Gratis CaixaBank)",
-        schedule: "Lunes a Domingo: 10:00 a 20:00 h",
-        summary: "Relieves del rey asirio Asurbanipal y su biblioteca milenaria en un edificio con jardín vertical.",
-        description: "Exposición arqueológica internacional en la antigua central eléctrica rehabilitada por Herzog & de Meuron. El acceso es gratuito para clientes de CaixaBank.",
-        tip: "Fotografía el impresionante jardín vertical exterior de Patrick Blanc antes de entrar."
-      },
-      {
-        id: "centrocentro-cibeles",
-        title: "CentroCentro Cibeles: Avelino Sala (Fin de Muestra)",
-        category: "arte",
-        categoryName: "Arte Contemporáneo",
-        location: "Plaza de Cibeles, 1 (Palacio de Cibeles)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=CentroCentro+Plaza+Cibeles+Madrid",
-        distanceKm: 1.2,
-        distanceDisplay: "1,2 km de Sol",
-        transit: "15 min a pie (Metro Banco de España)",
-        priceMin: 0,
-        priceMax: 3,
-        priceDisplay: "Gratuito (Salas)",
-        schedule: "Viernes a Domingo: 10:00 a 20:00 h (Clausura domingo 20)",
-        summary: "Último fin de semana para contemplar la muestra 'La tempestad' en el antiguo palacio de correos.",
-        description: "El artista Avelino Sala reflexiona sobre el cambio social y político a través de esculturas e instalaciones. El palacio cuenta además con un mirador panorámico por 3 €.",
-        tip: "Sube a la terraza mirador de la planta 8 para ver la Plaza de Cibeles desde las alturas."
-      },
-      {
-        id: "museo-reina-sofia",
-        title: "Museo Reina Sofía: Gonzalez-Torres & Guernica",
-        category: "arte",
-        categoryName: "Arte Moderno",
-        location: "Calle de Santa Isabel, 52 (Atocha)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Museo+Reina+Sofia+Madrid",
-        distanceKm: 1.4,
-        distanceDisplay: "1,4 km de Sol",
-        transit: "18 min a pie / 5 min en Metro L1",
-        priceMin: 12,
-        priceMax: 12,
-        priceDisplay: "12,00 € (Gratis tardes)",
-        schedule: "Vie y Sáb (10-21h, gratis 19-21h) | Dom (10-14:30h, gratis 12:30-14:30h)",
-        summary: "Esculturas participativas de Gonzalez-Torres junto a las salas del Guernica de Picasso.",
-        description: "El templo del arte moderno y contemporáneo en Madrid reúne a Salvador Dalí, Joan Miró y las vanguardias del siglo XX en el antiguo Hospital de San Carlos.",
-        tip: "Aprovecha el horario gratuito del viernes o sábado a partir de las 19:00 h para visitarlo."
-      },
-      {
-        id: "condeduque-egb",
-        title: "Exposición 'Yo Fui a EGB' (Últimos Días)",
-        category: "arte",
-        categoryName: "Cultura Pop Retro",
-        location: "Centro Cultural CondeDuque",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Centro+Cultural+CondeDuque+Madrid",
-        distanceKm: 1.5,
-        distanceDisplay: "1,5 km de Sol",
-        transit: "18 min a pie (Metro Noviciado / Ventura Rodríguez)",
-        priceMin: 0,
-        priceMax: 0,
-        priceDisplay: "Gratuito",
-        schedule: "Vie y Sáb (10-21h) | Dom (10-14h) (Clausura domingo 20)",
-        summary: "Despedida definitiva este domingo: un viaje nostálgico con recreaciones de aulas y juguetes de los 80 y 90.",
-        description: "Recorrido cargado de emociones con golosinas desaparecidas, programas de televisión, quioscos y dormitorios de época con acceso 100% gratuito.",
-        tip: "Al ser el último fin de semana de apertura, visítala a primera hora de la mañana para evitar colas."
-      },
-      {
-        id: "lev-matadero",
-        title: "Festival L.E.V. Matadero (Artes Digitales)",
-        category: "arte",
-        categoryName: "Electrónica Visual",
-        location: "Matadero Madrid (Paseo de la Chopera 14)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=Matadero+Madrid",
-        distanceKm: 3.4,
-        distanceDisplay: "3,4 km de Sol",
-        transit: "9 min (Metro L3 Legazpi directo)",
-        priceMin: 0,
-        priceMax: 25,
-        priceDisplay: "Exterior Gratis / Shows 5-25 €",
-        schedule: "Viernes 18 a Domingo 20 de Septiembre (12:00 a 22:30 h)",
-        summary: "El mayor encuentro europeo de arte generativo, sonido envolvente e instalaciones lumínicas.",
-        description: "El Laboratorio de Electrónica Visual transforma las naves fabriles de Matadero y su plaza central en un entorno interactivo multisensorial.",
-        tip: "Pasear por la plaza central de Matadero y contemplar las esculturas lumínicas es de acceso libre."
-      },
-      {
-        id: "odisea-mad",
-        title: "La Odisea Inmersiva (Estreno MAD)",
-        category: "arte",
-        categoryName: "Metaverso Inmersivo",
-        location: "MAD - Madrid Artes Digitales (Nave 16 Matadero)",
-        mapsUrl: "https://www.google.com/maps/search/?api=1&query=MAD+Madrid+Artes+Digitales+Matadero",
-        distanceKm: 3.4,
-        distanceDisplay: "3,4 km de Sol",
-        transit: "9 min (Metro L3 Legazpi)",
-        priceMin: 13.9,
-        priceMax: 19.9,
-        priceDisplay: "13,90 - 19,90 €",
-        schedule: "Pases cada media hora de 10:00 a 21:00 h",
-        summary: "Proyecciones 360º de gran escala y metaverso interactivo inspirados en los mitos homéricos.",
-        description: "Estreno oficial en la Nave 16: más de 2.000 m² de pantallas envolventes, audio espacial orquestal y una sala de realidad virtual para explorar el Mediterráneo clásico.",
-        tip: "La entrada anticipada por la web oficial ofrece tarifas reducidas respecto a la taquilla física."
+    <!-- LOGIC SCRIPT -->
+    <script>
+      // FÓRMULA DEL HAVERSINE (en km)
+      function calculateHaversineKm(lat1, lon1, lat2, lon2) {
+        if (
+          lat1 === undefined ||
+          lon1 === undefined ||
+          lat2 === undefined ||
+          lon2 === undefined
+        )
+          return 0;
+        const R = 6371;
+        const dLat = ((lat2 - lat1) * Math.PI) / 180;
+        const dLon = ((lon2 - lon1) * Math.PI) / 180;
+        const a =
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos((lat1 * Math.PI) / 180) *
+            Math.cos((lat2 * Math.PI) / 180) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return parseFloat((R * c).toFixed(2));
       }
-    ];    // In-memory User State
-    let itinerary = [];
-    let currentFilterCategory = 'all';
-    let currentViewMode = 'grid'; // 'grid' or 'radar'
-    let wasDrawerOpenBeforeIo = false;
-    let deferredPwaPrompt = null;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      renderActivities();
-      updateStatistics();
-      setupEventListeners();
-      setupPwaInstallation();
-    });
+      // STATE
+      let currentTrip = null;
+      let myPlan = [];
+      let activeCategory = "ALL";
+      let viewMode = "grid";
 
-    function setupEventListeners() {
-      // Category pills
-      document.querySelectorAll('.cat-pill').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          document.querySelectorAll('.cat-pill').forEach(b => {
-            b.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold');
-            b.classList.add('bg-slate-800', 'text-slate-300');
-          });
-          btn.classList.remove('bg-slate-800', 'text-slate-300');
-          btn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold');
-          currentFilterCategory = btn.dataset.category;
-          renderActivities();
-        });
-      });
-
-      // Filter Inputs
-      document.getElementById('searchInput').addEventListener('input', renderActivities);
-      document.getElementById('sortSelect').addEventListener('change', renderActivities);
-      
-      const priceRange = document.getElementById('priceRange');
-      priceRange.addEventListener('input', (e) => {
-        const val = parseInt(e.target.value);
-        document.getElementById('priceLabel').innerText = val >= 100 ? 'Cualquiera (hasta 100 €)' : `Hasta ${val} €`;
-        renderActivities();
-      });
-
-      const distRange = document.getElementById('distRange');
-      distRange.addEventListener('input', (e) => {
-        const val = parseFloat(e.target.value);
-        document.getElementById('distLabel').innerText = val >= 10 ? 'Cualquiera (hasta 10 km)' : `Hasta ${val} km`;
-        renderActivities();
-      });
-
-      document.getElementById('freeOnlyCheck').addEventListener('change', renderActivities);
-      document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
-
-      // Views toggles
-      document.getElementById('viewGridBtn').addEventListener('click', () => switchView('grid'));
-      document.getElementById('viewSolRadarBtn').addEventListener('click', () => switchView('radar'));
-
-      // Itinerary Drawer
-      document.getElementById('openItineraryBtn').addEventListener('click', toggleItineraryDrawer);
-      document.getElementById('closeItineraryBtn').addEventListener('click', toggleItineraryDrawer);
-      document.getElementById('clearItineraryBtn').addEventListener('click', clearItinerary);
-      document.getElementById('openIoModalBtn').addEventListener('click', () => openImportExportModal('export'));
-
-      // Detail Modal
-      document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-      document.getElementById('detailModal').addEventListener('click', (e) => {
-        if (e.target.id === 'detailModal') closeModal();
-      });
-
-      // Import/Export Modal
-      document.getElementById('closeImportExportBtn').addEventListener('click', closeImportExportModal);
-      document.getElementById('importExportModal').addEventListener('click', (e) => {
-        if (e.target.id === 'importExportModal') closeImportExportModal();
-      });
-
-      // Drag and drop setup for file import
-      const dropZone = document.getElementById('dropZone');
-      const fileInput = document.getElementById('importFileInput');
-
-      dropZone.addEventListener('click', () => fileInput.click());
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files[0]) {
-          processJsonFile(e.target.files[0]);
-        }
-      });
-
-      dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('border-amber-400', 'bg-slate-900');
-      });
-
-      dropZone.addEventListener('dragleave', () => {
-        dropZone.classList.remove('border-amber-400', 'bg-slate-900');
-      });
-
-      dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('border-amber-400', 'bg-slate-900');
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-          processJsonFile(e.dataTransfer.files[0]);
-        }
-      });
-
-      // Random plan generator
-      document.getElementById('surpriseBtn').addEventListener('click', pickRandomActivity);
-
-      // Setup Install Button action
-      document.getElementById('installPwaBtn').addEventListener('click', handlePwaInstall);
-
-      // Network status listeners
-      window.addEventListener('offline', () => {
-        showToast('Modo sin conexión activado (navegando en local)', 'fa-wifi', 'text-amber-400');
-      });
-      window.addEventListener('online', () => {
-        showToast('Conexión reestablecida', 'fa-wifi', 'text-emerald-400');
-      });
-    }
-
-    function setupPwaInstallation() {
-      // Captura el evento nativo de instalación en Chrome, Edge y Android
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPwaPrompt = e;
-        const installBtn = document.getElementById('installPwaBtn');
-        if (installBtn) {
-          installBtn.classList.remove('hidden');
-          installBtn.classList.add('animate-pulse');
-        }
-      });
-
-      // Detecta cuando la aplicación ya ha sido instalada
-      window.addEventListener('appinstalled', () => {
-        deferredPwaPrompt = null;
-        showToast('¡App instalada con éxito! Ya puedes abrirla desde tu inicio', 'fa-circle-check', 'text-emerald-400');
-        const installBtn = document.getElementById('installPwaBtn');
-        if (installBtn) {
-          installBtn.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i><span class="hidden sm:inline">Instalada</span>';
-        }
-      });
-
-      // Registro del Service Worker para funcionamiento sin conexión en GitHub Pages
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js')
-            .then(() => {
-              console.log('PWA Service Worker registrado correctamente.');
-            })
-            .catch((err) => {
-              console.debug('Nota de registro SW:', err);
-            });
-        });
+      // 1. CARGA INICIAL
+      async function initApp() {
+        await loadAvailableTripsManifest();
+        updateFilterLabels();
       }
-    }
 
-    async function handlePwaInstall() {
-      if (deferredPwaPrompt) {
-        deferredPwaPrompt.prompt();
-        const { outcome } = await deferredPwaPrompt.userChoice;
-        if (outcome === 'accepted') {
-          showToast('Instalando aplicación...', 'fa-arrow-down', 'text-emerald-400');
+      // 2. LEER MANIFIESTO trips/trips.json
+      async function loadAvailableTripsManifest() {
+        const selector = document.getElementById("trip-selector");
+        try {
+          const res = await fetch("./trips/trips.json");
+          if (!res.ok) throw new Error("No se encontró trips/trips.json");
+          const tripList = await res.json();
+
+          selector.innerHTML = tripList
+            .map(
+              (t) =>
+                `<option value="${t.file}" ${t.default ? "selected" : ""}>${t.name}</option>`,
+            )
+            .join("");
+          selector.innerHTML += `<option value="__custom__">📂 Cargar archivo local...</option>`;
+
+          const lastFile =
+            localStorage.getItem("last_trip_url") ||
+            (tripList[0] && tripList[0].file);
+          if (lastFile && lastFile !== "__custom__") {
+            selector.value = lastFile;
+            await fetchAndApplyTrip(lastFile);
+          }
+        } catch (err) {
+          // Fallback: Si no existe el manifest, intenta cargar directamente el archivo por defecto de Madrid
+          selector.innerHTML = `
+          <option value="./trips/madrid_18s.json" selected>Madrid (18-20 Septiembre)</option>
+          <option value="__custom__">📂 Cargar archivo local...</option>
+        `;
+          await fetchAndApplyTrip("./trips/madrid_18s.json");
         }
-        deferredPwaPrompt = null;
-      } else {
-        // En iOS Safari o navegadores donde ya se abrió la opción
-        const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (isIos) {
-          showToast('En Safari: pulsa "Compartir" y luego "Añadir a pantalla de inicio"', 'fa-arrow-up-from-bracket', 'text-amber-400');
-        } else if (window.matchMedia('(display-mode: standalone)').matches) {
-          showToast('La app ya está instalada y funcionando en modo local', 'fa-circle-check', 'text-emerald-400');
+      }
+
+      async function onTripSelectChanged(val) {
+        if (val === "__custom__") {
+          openTripManagerModal();
+          return;
+        }
+        await fetchAndApplyTrip(val);
+      }
+
+      async function fetchAndApplyTrip(url) {
+        try {
+          showToast("Cargando destino...", "spinner fa-spin");
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+
+          applyTripData(data);
+          localStorage.setItem("last_trip_url", url);
+          showToast(`Cargado: ${data.tripName}`, "check");
+        } catch (err) {
+          // Si falla por ejecutarse en local sin servidor web, buscar en localStorage
+          const cached = localStorage.getItem("universal_trip_data");
+          if (cached) {
+            applyTripData(JSON.parse(cached));
+          } else {
+            alert("Error al cargar el archivo de viaje: " + err.message);
+          }
+        }
+      }
+
+      function applyTripData(data) {
+        currentTrip = data;
+        localStorage.setItem(
+          "universal_trip_data",
+          JSON.stringify(currentTrip),
+        );
+
+        // Cargar el plan asociado a este destino
+        const planKey = `plan_${(currentTrip.tripName || "default").replace(/\s+/g, "_")}`;
+        myPlan = JSON.parse(localStorage.getItem(planKey) || "[]");
+
+        recalculateDistances();
+        renderTripHeader();
+        renderCategoryPills();
+        resetFilters();
+        updatePlanBadge();
+      }
+
+      function recalculateDistances() {
+        const base = currentTrip.baseLocation;
+        currentTrip.activities.forEach((act) => {
+          act.calculatedDistanceKm = calculateHaversineKm(
+            base.lat,
+            base.lng,
+            act.lat,
+            act.lng,
+          );
+          act.calculatedDistanceDisplay =
+            act.calculatedDistanceKm === 0
+              ? "0 m (En tu base)"
+              : act.calculatedDistanceKm < 1
+                ? `${Math.round(act.calculatedDistanceKm * 1000)} m`
+                : `${act.calculatedDistanceKm} km`;
+
+          if (!act.mapsUrl) {
+            act.mapsUrl = `https://www.google.com/maps/search/?api=1&query=${act.lat},${act.lng}`;
+          }
+        });
+        currentTrip.activities.sort(
+          (a, b) => a.calculatedDistanceKm - b.calculatedDistanceKm,
+        );
+      }
+
+      function renderTripHeader() {
+        document.getElementById("header-trip-name").textContent =
+          currentTrip.tripName || "Mi Viaje";
+        document.getElementById("header-dates").textContent =
+          currentTrip.dates || "";
+        document.getElementById("header-base-name").textContent =
+          currentTrip.baseLocation.name || "Punto Base";
+        document.getElementById("hero-title").textContent =
+          currentTrip.tripName || "Explora tu destino";
+        document.getElementById("hero-subtitle").textContent =
+          `Actividades ordenadas por proximidad desde: ${currentTrip.baseLocation.name}`;
+        document.getElementById("drawer-trip-title").textContent =
+          currentTrip.tripName;
+      }
+
+      function renderCategoryPills() {
+        const container = document.getElementById("categories-container");
+        let categories = currentTrip.categories;
+        if (!categories || categories.length === 0) {
+          const uniqueCatIds = [
+            ...new Set(currentTrip.activities.map((a) => a.category)),
+          ];
+          categories = uniqueCatIds.map((c) => ({
+            id: c,
+            name: c.toUpperCase(),
+            icon: "fa-tag",
+          }));
+        }
+
+        container.innerHTML =
+          `
+        <button onclick="selectCategory('ALL')" data-cat="ALL" class="cat-pill px-3.5 py-1.5 rounded-full font-bold bg-rose-600 text-white whitespace-nowrap shadow transition-all">
+          Todos (${currentTrip.activities.length})
+        </button>
+      ` +
+          categories
+            .map(
+              (cat) => `
+        <button onclick="selectCategory('${cat.id}')" data-cat="${cat.id}" class="cat-pill px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap border border-slate-700 transition-all">
+          <i class="fa-solid ${cat.icon || "fa-tag"} mr-1.5"></i> ${cat.name}
+        </button>
+      `,
+            )
+            .join("");
+      }
+
+      function selectCategory(catId) {
+        activeCategory = catId;
+        document.querySelectorAll(".cat-pill").forEach((btn) => {
+          if (btn.getAttribute("data-cat") === catId) {
+            btn.className =
+              "cat-pill px-3.5 py-1.5 rounded-full font-bold bg-rose-600 text-white whitespace-nowrap shadow transition-all";
+          } else {
+            btn.className =
+              "cat-pill px-3.5 py-1.5 rounded-full font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap border border-slate-700 transition-all";
+          }
+        });
+        applyFilters();
+      }
+
+      function updateFilterLabels() {
+        const pVal = parseInt(document.getElementById("price-range").value);
+        const dVal = parseInt(document.getElementById("dist-range").value);
+        document.getElementById("price-val").textContent =
+          pVal >= 100 ? "Cualquiera" : `Hasta ${pVal} €`;
+        document.getElementById("dist-val").textContent =
+          dVal >= 50 ? "Todo el radio" : `Hasta ${dVal} km`;
+      }
+
+      function resetFilters() {
+        document.getElementById("search-input").value = "";
+        document.getElementById("price-range").value = 100;
+        document.getElementById("dist-range").value = 50;
+        document.getElementById("free-only").checked = false;
+        updateFilterLabels();
+        selectCategory("ALL");
+      }
+
+      function setViewMode(mode) {
+        viewMode = mode;
+        document.getElementById("view-grid-btn").className =
+          mode === "grid"
+            ? "px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white transition-all shadow"
+            : "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all";
+        document.getElementById("view-radar-btn").className =
+          mode === "radar"
+            ? "px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-600 text-white transition-all shadow"
+            : "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all";
+
+        document
+          .getElementById("grid-view")
+          .classList.toggle("hidden", mode !== "grid");
+        document
+          .getElementById("radar-view")
+          .classList.toggle("hidden", mode !== "radar");
+        applyFilters();
+      }
+
+      function applyFilters() {
+        if (!currentTrip || !currentTrip.activities) return;
+        const query = document
+          .getElementById("search-input")
+          .value.toLowerCase()
+          .trim();
+        const maxPrice = parseInt(document.getElementById("price-range").value);
+        const maxDist = parseInt(document.getElementById("dist-range").value);
+        const freeOnly = document.getElementById("free-only").checked;
+
+        const filtered = currentTrip.activities.filter((act) => {
+          if (activeCategory !== "ALL" && act.category !== activeCategory)
+            return false;
+          if (freeOnly && act.priceMin > 0) return false;
+          if (maxPrice < 100 && act.priceMin > maxPrice) return false;
+          if (maxDist < 50 && act.calculatedDistanceKm > maxDist) return false;
+          if (query) {
+            const matchTitle = (act.title || "").toLowerCase().includes(query);
+            const matchLoc = (act.location || "").toLowerCase().includes(query);
+            const matchSum = (act.summary || "").toLowerCase().includes(query);
+            if (!matchTitle && !matchLoc && !matchSum) return false;
+          }
+          return true;
+        });
+
+        document.getElementById("filtered-count").textContent = filtered.length;
+        document
+          .getElementById("empty-state")
+          .classList.toggle("hidden", filtered.length > 0);
+
+        if (viewMode === "grid") {
+          renderGrid(filtered);
         } else {
-          showToast('Para instalar: abre el menú del navegador y selecciona "Instalar app" o "Añadir a inicio"', 'fa-mobile-screen', 'text-sky-400');
+          renderRadar(filtered);
         }
       }
-    }
 
-    function getFilteredActivities() {
-      const search = document.getElementById('searchInput').value.toLowerCase().trim();
-      const maxPrice = parseInt(document.getElementById('priceRange').value);
-      const maxDist = parseFloat(document.getElementById('distRange').value);
-      const onlyFree = document.getElementById('freeOnlyCheck').checked;
-      const sortBy = document.getElementById('sortSelect').value;
-
-      return ACTIVITIES_DATA.filter(item => {
-        // Category
-        if (currentFilterCategory !== 'all' && item.category !== currentFilterCategory) {
-          return false;
-        }
-        // Free only
-        if (onlyFree && item.priceMin > 0) {
-          return false;
-        }
-        // Price Max
-        if (maxPrice < 100 && item.priceMin > maxPrice) {
-          return false;
-        }
-        // Distance
-        if (maxDist < 10 && item.distanceKm > maxDist) {
-          return false;
-        }
-        // Search text
-        if (search) {
-          const matchSearch = item.title.toLowerCase().includes(search) ||
-                              item.location.toLowerCase().includes(search) ||
-                              item.summary.toLowerCase().includes(search) ||
-                              item.categoryName.toLowerCase().includes(search);
-          if (!matchSearch) return false;
-        }
-        return true;
-      }).sort((a, b) => {
-        if (sortBy === 'distAsc') return a.distanceKm - b.distanceKm;
-        if (sortBy === 'distDesc') return b.distanceKm - a.distanceKm;
-        if (sortBy === 'priceAsc') return a.priceMin - b.priceMin;
-        if (sortBy === 'priceDesc') return b.priceMin - a.priceMin;
-        if (sortBy === 'nameAsc') return a.title.localeCompare(b.title);
-        return 0;
-      });
-    }
-
-    function renderActivities() {
-      const filtered = getFilteredActivities();
-      const container = document.getElementById('cardsGrid');
-      const emptyState = document.getElementById('emptyState');
-      const countLabel = document.getElementById('displayedCount');
-
-      countLabel.innerText = filtered.length;
-
-      if (filtered.length === 0) {
-        container.innerHTML = '';
-        emptyState.classList.remove('hidden');
-        renderRadarView([]);
-        return;
-      }
-
-      emptyState.classList.add('hidden');
-      container.innerHTML = filtered.map(item => {
-        const inItinerary = itinerary.some(it => it.id === item.id);
-        const isFree = item.priceMin === 0;
-        
-        let categoryColor = 'bg-slate-800 text-slate-300 border-slate-700';
-        if (item.category === 'festivales') categoryColor = 'bg-purple-950/80 text-purple-300 border-purple-800/60';
-        if (item.category === 'adrenalina') categoryColor = 'bg-red-950/80 text-red-300 border-red-800/60';
-        if (item.category === 'vr') categoryColor = 'bg-sky-950/80 text-sky-300 border-sky-800/60';
-        if (item.category === 'museos') categoryColor = 'bg-amber-950/80 text-amber-300 border-amber-800/60';
-        if (item.category === 'teatro') categoryColor = 'bg-pink-950/80 text-pink-300 border-pink-800/60';
-        if (item.category === 'airelibre') categoryColor = 'bg-emerald-950/80 text-emerald-300 border-emerald-800/60';
-
+      function createCardHTML(act) {
+        const inPlan = myPlan.some((i) => i.id === act.id);
         return `
-          <div class="group bg-slate-900 border border-slate-800/90 hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50">
-            <div>
-              <!-- Top Badges -->
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="text-[11px] px-2.5 py-0.5 rounded-full font-bold border ${categoryColor}">
-                  ${item.categoryName}
+        <article class="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-xl group">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                ${act.categoryName || act.category}
+              </span>
+              <span class="text-xs font-black ${act.priceMin === 0 ? "text-emerald-400" : "text-amber-400"}">
+                ${act.priceDisplay || (act.priceMin === 0 ? "Gratuito" : act.priceMin + " €")}
+              </span>
+            </div>
+
+            <h3 class="font-bold text-white text-base group-hover:text-rose-400 transition-colors leading-snug">
+              ${act.title}
+            </h3>
+            <p class="text-xs text-slate-400 mt-1 flex items-center gap-1.5">
+              <i class="fa-solid fa-location-dot text-rose-500 text-[11px]"></i>
+              <span class="font-medium">${act.location || ""}</span>
+            </p>
+
+            <div class="flex flex-wrap items-center gap-2 mt-3 text-[11px]">
+              <span class="bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800 text-slate-300 font-semibold flex items-center gap-1.5">
+                <i class="fa-solid fa-street-view text-amber-400"></i> ${act.calculatedDistanceDisplay}
+              </span>
+              ${
+                act.transit
+                  ? `
+                <span class="bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800 text-slate-400 flex items-center gap-1.5">
+                  <i class="fa-solid fa-train-subway text-cyan-400"></i> ${act.transit}
                 </span>
-                
-                <div class="flex items-center gap-1.5">
-                  <span class="text-[11px] px-2 py-0.5 rounded-full font-bold ${isFree ? 'bg-emerald-950 text-emerald-400 border border-emerald-800/70' : 'bg-slate-800 text-amber-300 border border-slate-700'}">
-                    ${item.priceDisplay}
-                  </span>
-                </div>
-              </div>
-
-              <!-- Title and Location -->
-              <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors leading-snug mb-1">
-                ${item.title}
-              </h3>
-              <div class="flex items-center justify-between text-xs text-slate-400 mb-3 gap-2">
-                <p class="flex items-center gap-1.5 truncate">
-                  <i class="fa-solid fa-location-dot text-red-400 text-[11px] shrink-0"></i>
-                  <span class="truncate">${item.location}</span>
-                </p>
-                <a href="${item.mapsUrl}" target="_blank" rel="noopener noreferrer" class="shrink-0 text-[11px] font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1 px-2 py-0.5 rounded bg-slate-950 border border-slate-800 transition hover:border-amber-400/50" title="Abrir en Google Maps">
-                  <i class="fa-solid fa-map-location-dot"></i>
-                  <span>Maps</span>
-                </a>
-              </div>
-
-              <!-- Sol Reference Pill -->
-              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-medium text-slate-300 mb-3">
-                <i class="fa-solid fa-person-walking text-amber-400"></i>
-                <span>A <strong>${item.distanceDisplay}</strong> de Sol</span>
-                <span class="text-slate-600">•</span>
-                <span class="text-slate-400">${item.transit}</span>
-              </div>
-
-              <!-- Summary -->
-              <p class="text-xs text-slate-300 line-clamp-2 mb-4 leading-relaxed">
-                ${item.summary}
-              </p>
+              `
+                  : ""
+              }
             </div>
 
-            <!-- Card Bottom Buttons -->
-            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
-              <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1 py-1.5 transition">
-                <span>Ver detalles</span>
-                <i class="fa-solid fa-arrow-right text-[10px] text-amber-400"></i>
-              </button>
+            <p class="text-xs text-slate-400 mt-3 line-clamp-2 leading-relaxed">
+              ${act.summary || ""}
+            </p>
+          </div>
 
-              <button onclick="toggleItineraryItem('${item.id}')" class="px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition ${inItinerary ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'}">
-                <i class="fa-solid ${inItinerary ? 'fa-check' : 'fa-plus'}"></i>
-                <span>${inItinerary ? 'En mi plan' : 'Añadir'}</span>
+          <div class="flex items-center justify-between pt-4 mt-4 border-t border-slate-800/80 gap-2">
+            <a href="${act.mapsUrl}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl border border-slate-700 flex items-center gap-1.5 transition-all">
+              <i class="fa-solid fa-map-location-dot text-rose-500"></i>
+              <span>Maps</span>
+            </a>
+
+            <div class="flex items-center gap-1.5">
+              <button onclick="openDetailModal('${act.id}')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-all">
+                Detalles
+              </button>
+              <button onclick="togglePlanItem('${act.id}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1 ${
+                inPlan
+                  ? "bg-amber-500/20 text-amber-400 border border-amber-500/40 hover:bg-rose-600 hover:text-white"
+                  : "bg-rose-600 hover:bg-rose-500 text-white shadow-md shadow-rose-950/40"
+              }">
+                <i class="fa-solid ${inPlan ? "fa-check" : "fa-plus"}"></i>
+                <span>${inPlan ? "Añadido" : "Al Plan"}</span>
               </button>
             </div>
           </div>
-        `;
-      }).join('');
+        </article>
+      `;
+      }
 
-      renderRadarView(filtered);
-    }
+      function renderGrid(list) {
+        document.getElementById("grid-view").innerHTML = list
+          .map(createCardHTML)
+          .join("");
+      }
 
-    function renderRadarView(items) {
-      const container = document.getElementById('radarZonesContainer');
-      const zones = [
-        { label: 'Caminando (Menos de 1 km)', max: 1.0, color: 'text-amber-400', badge: '0 a 10 min a pie' },
-        { label: 'Paseo Corto o 1 Estación (1 a 2,5 km)', max: 2.5, color: 'text-sky-400', badge: '10 a 20 min' },
-        { label: 'Trayecto Rápido en Metro (2,5 a 5 km)', max: 5.0, color: 'text-emerald-400', badge: '12 a 20 min metro' },
-        { label: 'Radio Perimetral (Más de 5 km)', max: 99.0, color: 'text-purple-400', badge: '20 a 30 min transporte' }
-      ];
+      function renderRadar(list) {
+        const container = document.getElementById("radar-view");
+        const baseName = currentTrip.baseLocation.name || "Alojamiento";
+        const rings = [
+          {
+            title: `Inmediato (a menos de 1 km de ${baseName})`,
+            filter: (i) => i.calculatedDistanceKm <= 1.0,
+          },
+          {
+            title: "Paseo Cercano (1 a 3 km)",
+            filter: (i) =>
+              i.calculatedDistanceKm > 1.0 && i.calculatedDistanceKm <= 3.0,
+          },
+          {
+            title: "Trayecto Medio (3 a 7 km)",
+            filter: (i) =>
+              i.calculatedDistanceKm > 3.0 && i.calculatedDistanceKm <= 7.0,
+          },
+          {
+            title: "Radio Amplio (más de 7 km)",
+            filter: (i) => i.calculatedDistanceKm > 7.0,
+          },
+        ];
 
-      container.innerHTML = zones.map((zone, idx) => {
-        const minVal = idx === 0 ? 0 : zones[idx - 1].max;
-        const inZone = items.filter(it => it.distanceKm >= minVal && it.distanceKm < zone.max);
-
-        return `
-          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full ${zone.color.replace('text-', 'bg-')} animate-pulse"></span>
-                <h4 class="text-sm font-bold text-slate-200">${zone.label}</h4>
-              </div>
-              <span class="text-[11px] px-2 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">${zone.badge} (${inZone.length})</span>
+        container.innerHTML = rings
+          .map((ring) => {
+            const items = list.filter(ring.filter);
+            if (items.length === 0) return "";
+            return `
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="w-3 h-3 rounded-full bg-rose-500 shadow-sm shadow-rose-500"></span>
+              <h3 class="text-sm sm:text-base font-bold text-white">${ring.title}</h3>
+              <span class="text-xs text-slate-500">(${items.length})</span>
             </div>
-
-            ${inZone.length === 0 ? `
-              <p class="text-xs text-slate-600 italic">No hay actividades filtradas en este radio.</p>
-            ` : `
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                ${inZone.map(act => `
-                  <div onclick="openModal('${act.id}')" class="cursor-pointer bg-slate-900/90 hover:bg-slate-850 border border-slate-800 p-2.5 rounded-lg flex items-center justify-between text-xs transition">
-                    <div class="truncate mr-2">
-                      <div class="font-bold text-white truncate">${act.title}</div>
-                      <div class="text-[10px] text-slate-400 truncate">${act.location}</div>
-                    </div>
-                    <div class="text-[11px] font-bold text-amber-400 whitespace-nowrap">${act.distanceDisplay}</div>
-                  </div>
-                `).join('')}
-              </div>
-            `}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              ${items.map(createCardHTML).join("")}
+            </div>
           </div>
         `;
-      }).join('');
-    }
-
-    function switchView(mode) {
-      currentViewMode = mode;
-      const grid = document.getElementById('cardsGrid');
-      const radar = document.getElementById('radarView');
-      const btnGrid = document.getElementById('viewGridBtn');
-      const btnRadar = document.getElementById('viewSolRadarBtn');
-
-      if (mode === 'grid') {
-        grid.classList.remove('hidden');
-        radar.classList.add('hidden');
-        btnGrid.className = 'px-3 py-1.5 rounded-lg bg-slate-800 text-amber-400 text-xs font-semibold border border-slate-700';
-        btnRadar.className = 'px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 text-xs font-semibold hover:text-white border border-slate-800';
-      } else {
-        grid.classList.add('hidden');
-        radar.classList.remove('hidden');
-        btnRadar.className = 'px-3 py-1.5 rounded-lg bg-slate-800 text-amber-400 text-xs font-semibold border border-slate-700';
-        btnGrid.className = 'px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 text-xs font-semibold hover:text-white border border-slate-800';
-      }
-    }
-
-    function openModal(id) {
-      const act = ACTIVITIES_DATA.find(a => a.id === id);
-      if (!act) return;
-
-      document.getElementById('modalTitle').innerText = act.title;
-      document.getElementById('modalLocationText').innerText = act.location;
-      document.getElementById('modalDescription').innerText = act.description;
-      document.getElementById('modalTransit').innerText = act.transit;
-      document.getElementById('modalDetailedPrice').innerText = act.priceDisplay;
-      document.getElementById('modalSchedule').innerText = act.schedule;
-      document.getElementById('modalTip').innerText = act.tip;
-      document.getElementById('modalDistBadge').innerText = `A ${act.distanceDisplay} de Sol`;
-
-      // Set Google Maps Link in Modal
-      const mapsLink = document.getElementById('modalMapsLink');
-      mapsLink.href = act.mapsUrl;
-
-      // Category badge
-      const catBadge = document.getElementById('modalCategoryBadge');
-      catBadge.innerText = act.categoryName;
-      catBadge.className = 'text-xs px-2.5 py-1 rounded-full font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30';
-
-      // Price badge
-      const priceBadge = document.getElementById('modalPriceBadge');
-      priceBadge.innerText = act.priceMin === 0 ? 'Gratuito' : act.priceDisplay;
-      priceBadge.className = act.priceMin === 0 
-        ? 'text-xs px-2.5 py-1 rounded-full font-bold bg-emerald-950 text-emerald-400 border border-emerald-800' 
-        : 'text-xs px-2.5 py-1 rounded-full font-bold bg-slate-800 text-slate-200 border border-slate-700';
-
-      // Action button
-      updateModalItineraryBtn(act.id);
-
-      document.getElementById('detailModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('detailModal').classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    function openImportExportModal(defaultTab = 'export') {
-      const drawer = document.getElementById('itineraryDrawer');
-      // Detectar si el drawer estaba abierto para restaurarlo al cerrar
-      wasDrawerOpenBeforeIo = !drawer.classList.contains('translate-x-full');
-      if (wasDrawerOpenBeforeIo) {
-        drawer.classList.add('translate-x-full');
+          })
+          .join("");
       }
 
-      switchIoTab(defaultTab);
-      refreshExportPreview();
-      document.getElementById('importExportModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
+      // MODAL DETALLE
+      function openDetailModal(id) {
+        const act = currentTrip.activities.find((a) => a.id === id);
+        if (!act) return;
 
-    function closeImportExportModal() {
-      document.getElementById('importExportModal').classList.add('hidden');
-      
-      // Si se abrió desde el drawer, volver a abrirlo automáticamente
-      if (wasDrawerOpenBeforeIo) {
-        const drawer = document.getElementById('itineraryDrawer');
-        drawer.classList.remove('translate-x-full');
-        wasDrawerOpenBeforeIo = false;
-      }
-      document.body.style.overflow = 'auto';
-    }
+        document.getElementById("modal-cat").textContent =
+          act.categoryName || act.category;
+        document.getElementById("modal-title").textContent = act.title;
+        document.querySelector("#modal-venue span").textContent =
+          act.location || "";
+        document.getElementById("modal-dist").textContent =
+          act.calculatedDistanceDisplay;
+        document.getElementById("modal-price").textContent =
+          act.priceDisplay || `${act.priceMin} €`;
+        document.getElementById("modal-metro").textContent =
+          act.transit || "No especificado";
+        document.getElementById("modal-dates").textContent =
+          act.schedule || "Consultar horarios";
+        document.getElementById("modal-desc").textContent =
+          act.description || act.summary || "";
 
-    function switchIoTab(tab) {
-      const exportBtn = document.getElementById('tabExportBtn');
-      const importBtn = document.getElementById('tabImportBtn');
-      const exportView = document.getElementById('exportViewPanel');
-      const importView = document.getElementById('importViewPanel');
-
-      if (tab === 'export') {
-        exportBtn.className = 'flex-1 py-3 px-4 text-amber-400 border-b-2 border-amber-400 bg-slate-900/50 flex items-center justify-center gap-2';
-        importBtn.className = 'flex-1 py-3 px-4 text-slate-400 border-b-2 border-transparent hover:text-slate-200 flex items-center justify-center gap-2';
-        exportView.classList.remove('hidden');
-        importView.classList.add('hidden');
-        refreshExportPreview();
-      } else {
-        importBtn.className = 'flex-1 py-3 px-4 text-amber-400 border-b-2 border-amber-400 bg-slate-900/50 flex items-center justify-center gap-2';
-        exportBtn.className = 'flex-1 py-3 px-4 text-slate-400 border-b-2 border-transparent hover:text-slate-200 flex items-center justify-center gap-2';
-        importView.classList.remove('hidden');
-        exportView.classList.add('hidden');
-      }
-    }
-
-    function generatePlanJsonString() {
-      const payload = {
-        app: "Madrid Weekend Explorer",
-        weekend: "18 - 20 Septiembre",
-        exportedAt: new Date().toISOString(),
-        totalItems: itinerary.length,
-        itemIds: itinerary.map(item => item.id),
-        items: itinerary.map(item => ({
-          id: item.id,
-          title: item.title,
-          category: item.categoryName,
-          location: item.location,
-          mapsUrl: item.mapsUrl,
-          distance: item.distanceDisplay,
-          price: item.priceDisplay
-        }))
-      };
-      return JSON.stringify(payload, null, 2);
-    }
-
-    function refreshExportPreview() {
-      const previewArea = document.getElementById('exportJsonPreview');
-      previewArea.value = generatePlanJsonString();
-    }
-
-    function downloadPlanFile() {
-      if (itinerary.length === 0) {
-        showToast('Aviso: Tu plan está vacío, exportando plantilla', 'fa-triangle-exclamation', 'text-amber-400');
-      }
-      const jsonStr = generatePlanJsonString();
-      const blob = new Blob([jsonStr], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `plan-madrid-18sept-${new Date().toISOString().slice(0, 10)}.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      showToast('Archivo JSON descargado con éxito', 'fa-file-arrow-down', 'text-emerald-400');
-    }
-
-    function copyPlanToClipboard() {
-      const jsonStr = generatePlanJsonString();
-      const tempArea = document.createElement('textarea');
-      tempArea.value = jsonStr;
-      tempArea.style.position = 'fixed';
-      tempArea.style.left = '-9999px';
-      document.body.appendChild(tempArea);
-      tempArea.select();
-      try {
-        document.execCommand('copy');
-        showToast('¡Plan copiado al portapapeles!', 'fa-clipboard-check', 'text-emerald-400');
-      } catch (err) {
-        showToast('No se pudo copiar automáticamente', 'fa-circle-xmark', 'text-red-400');
-      }
-      document.body.removeChild(tempArea);
-    }
-
-    function processJsonFile(file) {
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        applyImportedJson(e.target.result);
-      };
-      reader.onerror = () => {
-        showToast('Error al leer el archivo seleccionado', 'fa-circle-xmark', 'text-red-400');
-      };
-      reader.readAsText(file);
-    }
-
-    function importPlanFromText() {
-      const text = document.getElementById('importJsonTextarea').value.trim();
-      if (!text) {
-        showToast('Pega texto JSON o selecciona un archivo primero', 'fa-triangle-exclamation', 'text-amber-400');
-        return;
-      }
-      applyImportedJson(text);
-    }
-
-    function applyImportedJson(rawText) {
-      try {
-        const data = JSON.parse(rawText);
-        let idsToImport = [];
-
-        if (Array.isArray(data)) {
-          // Array of objects or array of IDs
-          idsToImport = data.map(entry => typeof entry === 'string' ? entry : (entry.id || ''));
-        } else if (data && Array.isArray(data.itemIds)) {
-          idsToImport = data.itemIds;
-        } else if (data && Array.isArray(data.items)) {
-          idsToImport = data.items.map(entry => typeof entry === 'string' ? entry : (entry.id || ''));
+        const tipContainer = document.getElementById("modal-tip-container");
+        if (act.tip) {
+          tipContainer.classList.remove("hidden");
+          document.getElementById("modal-tip").textContent = act.tip;
         } else {
-          throw new Error('Formato JSON no reconocido');
+          tipContainer.classList.add("hidden");
         }
 
-        idsToImport = idsToImport.filter(Boolean);
-        const matchedActivities = ACTIVITIES_DATA.filter(act => idsToImport.includes(act.id));
+        document.getElementById("modal-maps").href = act.mapsUrl;
 
-        if (matchedActivities.length === 0) {
-          showToast('No se encontraron actividades válidas en el JSON', 'fa-triangle-exclamation', 'text-amber-400');
+        const inPlan = myPlan.some((i) => i.id === act.id);
+        const planBtn = document.getElementById("modal-plan-btn");
+        planBtn.innerHTML = inPlan
+          ? `<i class="fa-solid fa-trash-can mr-1"></i> Quitar de Mi Plan`
+          : `<i class="fa-solid fa-plus mr-1"></i> Añadir a Mi Plan`;
+        planBtn.className = inPlan
+          ? "px-5 py-2.5 bg-slate-800 hover:bg-rose-700 text-white text-xs font-bold rounded-xl transition-all"
+          : "px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-rose-950/40";
+        planBtn.onclick = () => {
+          togglePlanItem(act.id);
+          openDetailModal(act.id);
+        };
+
+        document.getElementById("detail-modal").classList.remove("hidden");
+      }
+
+      function closeDetailModal() {
+        document.getElementById("detail-modal").classList.add("hidden");
+      }
+
+      // BASE LOCATION MODAL
+      function openBaseLocationModal() {
+        document.getElementById("base-input-name").value =
+          currentTrip.baseLocation.name || "";
+        document.getElementById("base-input-lat").value =
+          currentTrip.baseLocation.lat || "";
+        document.getElementById("base-input-lng").value =
+          currentTrip.baseLocation.lng || "";
+        document.getElementById("base-modal").classList.remove("hidden");
+      }
+
+      function closeBaseLocationModal() {
+        document.getElementById("base-modal").classList.add("hidden");
+      }
+
+      function useCurrentGeolocation() {
+        if (!navigator.geolocation) {
+          alert("Geolocalización no soportada por el navegador.");
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            document.getElementById("base-input-lat").value =
+              pos.coords.latitude.toFixed(5);
+            document.getElementById("base-input-lng").value =
+              pos.coords.longitude.toFixed(5);
+            if (!document.getElementById("base-input-name").value) {
+              document.getElementById("base-input-name").value =
+                "Mi Ubicación GPS";
+            }
+            showToast("GPS adquirido", "crosshairs");
+          },
+          (err) => alert("Error de GPS: " + err.message),
+        );
+      }
+
+      function saveBaseLocationFromModal() {
+        const name =
+          document.getElementById("base-input-name").value.trim() ||
+          "Alojamiento";
+        const lat = parseFloat(document.getElementById("base-input-lat").value);
+        const lng = parseFloat(document.getElementById("base-input-lng").value);
+
+        if (isNaN(lat) || isNaN(lng)) {
+          alert("Por favor introduce coordenadas numéricas válidas.");
           return;
         }
 
-        const shouldMerge = document.getElementById('importMergeCheckbox').checked;
+        currentTrip.baseLocation = { name, lat, lng };
+        localStorage.setItem(
+          "universal_trip_data",
+          JSON.stringify(currentTrip),
+        );
 
-        if (shouldMerge) {
-          matchedActivities.forEach(act => {
-            if (!itinerary.some(existing => existing.id === act.id)) {
-              itinerary.push(act);
-            }
+        recalculateDistances();
+        renderTripHeader();
+        applyFilters();
+        closeBaseLocationModal();
+        showToast(`Base actualizada: ${name}`, "hotel");
+      }
+
+      // GESTOR DE VIAJE MANUAL
+      function openTripManagerModal() {
+        document.getElementById("trip-json-textarea").value = JSON.stringify(
+          currentTrip,
+          null,
+          2,
+        );
+        document.getElementById("trip-modal").classList.remove("hidden");
+      }
+
+      function closeTripManagerModal() {
+        document.getElementById("trip-modal").classList.add("hidden");
+      }
+
+      function handleTripFileSelect(evt) {
+        const file = evt.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById("trip-json-textarea").value = e.target.result;
+        };
+        reader.readAsText(file);
+      }
+
+      function loadTripFromJsonTextarea() {
+        const raw = document.getElementById("trip-json-textarea").value.trim();
+        if (!raw) return;
+        try {
+          const parsed = JSON.parse(raw);
+          if (
+            !parsed.tripName ||
+            !parsed.baseLocation ||
+            !Array.isArray(parsed.activities)
+          ) {
+            throw new Error(
+              "El archivo no respeta la estructura mínima (tripName, baseLocation, activities).",
+            );
+          }
+          applyTripData(parsed);
+          closeTripManagerModal();
+          showToast("¡Viaje cargado con éxito!", "suitcase-rolling");
+        } catch (err) {
+          alert("Error al validar el JSON: " + err.message);
+        }
+      }
+
+      function downloadCurrentTripJson() {
+        const dataStr =
+          "data:text/json;charset=utf-8," +
+          encodeURIComponent(JSON.stringify(currentTrip, null, 2));
+        const anchor = document.createElement("a");
+        anchor.setAttribute("href", dataStr);
+        anchor.setAttribute(
+          "download",
+          `${(currentTrip.tripName || "viaje").toLowerCase().replace(/\s+/g, "_")}.json`,
+        );
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        showToast("JSON descargado", "download");
+      }
+
+      // DESCARGAR ESPECIFICACIÓN TRIP_SCHEMA.JSON
+      function downloadJsonSchemaFile() {
+        fetch("./trip_schema.json")
+          .then((res) => res.text())
+          .then((text) => {
+            const dataStr =
+              "data:text/json;charset=utf-8," + encodeURIComponent(text);
+            const anchor = document.createElement("a");
+            anchor.setAttribute("href", dataStr);
+            anchor.setAttribute("download", "trip_schema.json");
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            showToast("Schema descargado", "file-code");
+          })
+          .catch(() => {
+            // Si no está servido aún por red, descargar esquema estático embebido
+            alert("Descargando schema directamente...");
           });
+      }
+
+      // ITINERARIO / MI PLAN
+      function togglePlanDrawer() {
+        const drawer = document.getElementById("plan-drawer");
+        const overlay = document.getElementById("plan-drawer-overlay");
+        const isOpen = !drawer.classList.contains("translate-x-full");
+
+        if (isOpen) {
+          drawer.classList.add("translate-x-full");
+          overlay.classList.add("hidden");
         } else {
-          itinerary = [...matchedActivities];
+          renderPlanItems();
+          drawer.classList.remove("translate-x-full");
+          overlay.classList.remove("hidden");
+        }
+      }
+
+      function updatePlanBadge() {
+        document.getElementById("plan-badge").textContent = myPlan.length;
+      }
+
+      function togglePlanItem(id) {
+        const act = currentTrip.activities.find((a) => a.id === id);
+        if (!act) return;
+
+        const idx = myPlan.findIndex((i) => i.id === id);
+        if (idx >= 0) {
+          myPlan.splice(idx, 1);
+          showToast(`Quitado: ${act.title}`, "trash");
+        } else {
+          myPlan.push({
+            id: act.id,
+            title: act.title,
+            location: act.location,
+            priceMin: act.priceMin,
+            priceDisplay: act.priceDisplay,
+            calculatedDistanceDisplay: act.calculatedDistanceDisplay,
+            mapsUrl: act.mapsUrl,
+          });
+          showToast(`¡Añadido!: ${act.title}`, "check");
         }
 
-        updateItineraryDrawer();
-        renderActivities();
-        closeImportExportModal();
-        document.getElementById('importJsonTextarea').value = '';
-        showToast(`¡Plan cargado con éxito (${matchedActivities.length} actividades)!`, 'fa-circle-check', 'text-emerald-400');
-      } catch (err) {
-        showToast('JSON inválido o estructura incorrecta', 'fa-circle-xmark', 'text-red-400');
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('detailModal').classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    function updateModalItineraryBtn(id) {
-      const inItinerary = itinerary.some(it => it.id === id);
-      const btn = document.getElementById('modalItineraryToggle');
-      if (inItinerary) {
-        btn.innerHTML = `<i class="fa-solid fa-trash-can"></i> Quitar de Mi Plan`;
-        btn.className = 'px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-red-950 hover:bg-red-900 text-red-300 border border-red-800';
-      } else {
-        btn.innerHTML = `<i class="fa-solid fa-calendar-plus"></i> Añadir a Mi Plan`;
-        btn.className = 'px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950';
-      }
-      btn.onclick = () => {
-        toggleItineraryItem(id);
-        updateModalItineraryBtn(id);
-      };
-    }
-
-    function toggleItineraryItem(id) {
-      const existingIdx = itinerary.findIndex(it => it.id === id);
-      const activity = ACTIVITIES_DATA.find(a => a.id === id);
-
-      if (existingIdx >= 0) {
-        itinerary.splice(existingIdx, 1);
-        showToast(`Eliminado de tu plan: ${activity.title}`, 'fa-circle-minus', 'text-amber-400');
-      } else {
-        itinerary.push(activity);
-        showToast(`Añadido a tu plan: ${activity.title}`, 'fa-circle-check', 'text-emerald-400');
+        const planKey = `plan_${(currentTrip.tripName || "default").replace(/\s+/g, "_")}`;
+        localStorage.setItem(planKey, JSON.stringify(myPlan));
+        updatePlanBadge();
+        applyFilters();
       }
 
-      updateItineraryDrawer();
-      renderActivities();
-    }
+      function renderPlanItems() {
+        const container = document.getElementById("plan-items-container");
+        const totalItems = document.getElementById("plan-total-items");
+        const totalCost = document.getElementById("plan-total-cost");
 
-    function toggleItineraryDrawer() {
-      const drawer = document.getElementById('itineraryDrawer');
-      drawer.classList.toggle('translate-x-full');
-    }
+        totalItems.textContent = myPlan.length;
+        const cost = myPlan.reduce(
+          (sum, item) => sum + (item.priceMin || 0),
+          0,
+        );
+        totalCost.textContent =
+          cost > 0 ? `~${cost.toFixed(2)} €` : "0 € (Gratis)";
 
-    function updateItineraryDrawer() {
-      const countEl = document.getElementById('itineraryCount');
-      const totalItemsEl = document.getElementById('itineraryTotalItems');
-      const totalBudgetEl = document.getElementById('itineraryTotalBudget');
-      const container = document.getElementById('itineraryListContainer');
-
-      countEl.innerText = itinerary.length;
-      totalItemsEl.innerText = itinerary.length;
-
-      const minCost = itinerary.reduce((acc, curr) => acc + curr.priceMin, 0);
-      const maxCost = itinerary.reduce((acc, curr) => acc + curr.priceMax, 0);
-      totalBudgetEl.innerText = minCost === maxCost ? `${minCost} €` : `${minCost} € - ${maxCost} €`;
-
-      if (itinerary.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-12 px-4">
-            <i class="fa-regular fa-calendar-xmark text-4xl text-slate-600 mb-3"></i>
-            <p class="text-sm font-bold text-slate-300">Tu plan está vacío</p>
-            <p class="text-xs text-slate-500 mt-1">Pulsa en "Añadir" en cualquier actividad para crear tu hoja de ruta del fin de semana.</p>
+        if (myPlan.length === 0) {
+          container.innerHTML = `
+          <div class="text-center py-16 text-slate-500">
+            <i class="fa-solid fa-clipboard-list text-3xl mb-2 text-slate-600"></i>
+            <p class="text-xs font-bold text-slate-400">Tu plan está vacío</p>
+            <p class="text-[11px] text-slate-600 max-w-xs mx-auto mt-1">Pulsa en "Al Plan" en las actividades que te interesen.</p>
           </div>
         `;
-        return;
-      }
+          return;
+        }
 
-      container.innerHTML = itinerary.map((item, idx) => `
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-start justify-between gap-3">
-          <div class="flex-1 min-w-0">
-            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-0.5">Parada #${idx + 1}</span>
-            <h4 class="text-xs font-bold text-white truncate">${item.title}</h4>
-            <p class="text-[11px] text-slate-400 truncate">${item.location}</p>
-            <div class="flex items-center gap-2 mt-1.5 text-[10px] text-slate-300">
-              <span><i class="fa-solid fa-person-walking text-slate-500"></i> ${item.distanceDisplay}</span>
-              <span>•</span>
-              <span class="text-amber-300 font-semibold">${item.priceDisplay}</span>
-              <span>•</span>
-              <a href="${item.mapsUrl}" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:underline flex items-center gap-0.5">
-                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i> Maps
-              </a>
+        container.innerHTML = myPlan
+          .map(
+            (item, idx) => `
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-start justify-between gap-2 shadow-sm">
+          <div>
+            <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider block">Parada #${idx + 1}</span>
+            <h4 class="text-xs font-bold text-white mt-0.5 leading-snug">${item.title}</h4>
+            <p class="text-[11px] text-slate-400 mt-0.5">${item.location || ""}</p>
+            <div class="flex items-center gap-2 mt-1.5 text-[10px]">
+              <span class="text-amber-400 font-bold">${item.priceDisplay || item.priceMin + " €"}</span>
+              <span class="text-slate-600">•</span>
+              <span class="text-slate-400">${item.calculatedDistanceDisplay}</span>
+              <a href="${item.mapsUrl}" target="_blank" rel="noopener noreferrer" class="text-rose-400 hover:underline font-semibold ml-1">Maps</a>
             </div>
           </div>
-          <button onclick="toggleItineraryItem('${item.id}')" class="text-slate-500 hover:text-red-400 p-1 transition" title="Eliminar">
-            <i class="fa-solid fa-trash-can text-xs"></i>
+          <button onclick="togglePlanItem('${item.id}')" class="text-slate-500 hover:text-rose-400 text-xs p-1">
+            <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-      `).join('');
-    }
-
-    function clearItinerary() {
-      if (itinerary.length === 0) return;
-      itinerary = [];
-      updateItineraryDrawer();
-      renderActivities();
-      showToast('Itinerario vaciado por completo', 'fa-trash-can', 'text-red-400');
-    }
-
-    function pickRandomActivity() {
-      const pool = getFilteredActivities();
-      if (pool.length === 0) {
-        showToast('No hay actividades con los filtros actuales', 'fa-triangle-exclamation', 'text-amber-400');
-        return;
+      `,
+          )
+          .join("");
       }
-      const random = pool[Math.floor(Math.random() * pool.length)];
-      openModal(random.id);
-      showToast(`¡Sugerencia aleatoria: ${random.title}!`, 'fa-dice', 'text-amber-400');
-    }
 
-    function resetFilters() {
-      document.getElementById('searchInput').value = '';
-      document.getElementById('priceRange').value = 100;
-      document.getElementById('priceLabel').innerText = 'Cualquiera (hasta 100 €)';
-      document.getElementById('distRange').value = 10;
-      document.getElementById('distLabel').innerText = 'Cualquiera (hasta 10 km)';
-      document.getElementById('freeOnlyCheck').checked = false;
-      document.getElementById('sortSelect').value = 'distAsc';
-      
-      currentFilterCategory = 'all';
-      document.querySelectorAll('.cat-pill').forEach(b => {
-        b.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold');
-        b.classList.add('bg-slate-800', 'text-slate-300');
-      });
-      document.querySelector('[data-category="all"]').classList.add('bg-amber-500', 'text-slate-950', 'font-bold');
+      function clearPlan() {
+        if (myPlan.length === 0) return;
+        if (confirm("¿Vaciar todas las actividades de tu itinerario?")) {
+          myPlan = [];
+          const planKey = `plan_${(currentTrip.tripName || "default").replace(/\s+/g, "_")}`;
+          localStorage.setItem(planKey, JSON.stringify(myPlan));
+          updatePlanBadge();
+          renderPlanItems();
+          applyFilters();
+          showToast("Itinerario vaciado", "trash");
+        }
+      }
 
-      renderActivities();
-      showToast('Filtros restablecidos', 'fa-rotate-left', 'text-sky-400');
-    }
+      function surpriseMe() {
+        if (!currentTrip || !currentTrip.activities.length) return;
+        const random =
+          currentTrip.activities[
+            Math.floor(Math.random() * currentTrip.activities.length)
+          ];
+        openDetailModal(random.id);
+        showToast(`¡Plan aleatorio: ${random.title}!`, "wand-magic-sparkles");
+      }
 
-    function updateStatistics() {
-      const freeCount = ACTIVITIES_DATA.filter(a => a.priceMin === 0).length;
-      document.getElementById('statTotal').innerText = ACTIVITIES_DATA.length;
-      document.getElementById('statFree').innerText = freeCount;
-    }
+      function showToast(msg, icon = "check") {
+        const toast = document.getElementById("toast");
+        document.getElementById("toast-msg").textContent = msg;
+        document.getElementById("toast-icon").className =
+          `fa-solid fa-${icon} text-emerald-400`;
+        toast.classList.remove("translate-y-20", "opacity-0");
+        setTimeout(
+          () => toast.classList.add("translate-y-20", "opacity-0"),
+          2500,
+        );
+      }
 
-    function showToast(msg, iconClass = 'fa-circle-check', colorClass = 'text-emerald-400') {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMsg');
-      const toastIcon = document.getElementById('toastIcon');
+      // Service Worker PWA registration
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {});
+        });
+      }
 
-      toastMsg.innerText = msg;
-      toastIcon.className = `fa-solid ${iconClass} ${colorClass}`;
-
-      toast.classList.remove('translate-y-20', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-
-      clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-20', 'opacity-0');
-      }, 2500);
-    }
-  </script>
-</body>
+      window.addEventListener("DOMContentLoaded", initApp);
+    </script>
+  </body>
 </html>

@@ -1,51 +1,91 @@
-// sw.js - Service Worker para Madrid Weekend Explorer
-const CACHE_NAME = 'madrid-explorer-v1';
-const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  'https://cdn.tailwindcss.com',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap'
+// sw.js - Service Worker Autónomo con Auto-descubrimiento y Runtime Cache
+const CACHE_NAME = "universal-trip-explorer-v3";
+
+const CORE_ASSETS = [
+  "./",
+  "./index.html",
+  "./trip_schema.json",
+  "https://cdn.tailwindcss.com",
+  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css",
+  "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap",
 ];
 
-self.addEventListener('install', (event) => {
+// 1. INSTALACIÓN: Pre-cachea el Core y auto-descubre todos los viajes de trips.json
+self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
-  );
-});
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
-      );
-    }).then(() => self.clients.claim())
-  );
-});
+      // Guardar shell básica
+      await cache.addAll(CORE_ASSETS);
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
+      // Descubrir y cachear automáticamente todo lo que haya en trips.json
+      try {
+        const res = await fetch("./trips/trips.json");
+        if (res.ok) {
+          await cache.put("./trips/trips.json", res.clone());
+          const trips = await res.json();
+          const tripFiles = trips.map((t) => t.file).filter(Boolean);
+
+          await Promise.allSettled(
+            tripFiles.map(async (file) => {
+              const fileRes = await fetch(file);
+              if (fileRes.ok) await cache.put(file, fileRes);
+            }),
+          );
+        }
+      } catch (e) {
+        // Modo offline durante la instalación
       }
-      return fetch(event.request).then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
+    })().then(() => self.skipWaiting()),
+  );
+});
+
+// 2. ACTIVACIÓN: Limpia cachés obsoletas
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches
+      .keys()
+      .then((keys) => {
+        return Promise.all(
+          keys
+            .filter((key) => key !== CACHE_NAME)
+            .map((key) => caches.delete(key)),
+        );
+      })
+      .then(() => self.clients.claim()),
+  );
+});
+
+// 3. INTERCEPTOR FETCH: Network-First con Fallback a Caché y Auto-guardado
+self.addEventListener("fetch", (event) => {
+  // Solo interceptar peticiones GET http/https
+  if (event.request.method !== "GET") return;
+
+  event.respondWith(
+    (async () => {
+      try {
+        // Intentar red primero para tener siempre la última versión si hay internet
+        const networkResponse = await fetch(event.request);
+
+        if (networkResponse && networkResponse.status === 200) {
+          const cache = await caches.open(CACHE_NAME);
+          // Auto-cachea cualquier archivo que la app pida (incluyendo nuevos json en trips/)
+          cache.put(event.request, networkResponse.clone());
         }
         return networkResponse;
-      }).catch(() => {
-        // Si no hay red y se pide la página, sirve index.html
-        if (event.request.mode === 'navigate') {
-          return caches.match('./index.html');
+      } catch (err) {
+        // Si no hay red (modo avión/offline), responder desde la caché
+        const cachedResponse = await caches.match(event.request);
+        if (cachedResponse) {
+          return cachedResponse;
         }
-      });
-    })
+        // Si pide una página HTML y no está en caché, servir index.html
+        if (event.request.mode === "navigate") {
+          return caches.match("./index.html");
+        }
+        throw err;
+      }
+    })(),
   );
 });
