@@ -13,13 +13,25 @@
       content="black-translucent"
     />
     <meta name="apple-mobile-web-app-title" content="TripExplorer" />
+    <!-- ========================================== -->
+    <!-- FAVICON & PWA ICONS OPTIMIZADOS -->
+    <!-- Favicon SVG moderno para pestañas de navegador (Chrome, Firefox, Edge, Safari) -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230F172A'/%3E%3Cstop offset='100%25' stop-color='%23020617'/%3E%3C/linearGradient%3E%3ClinearGradient id='brand' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F43F5E'/%3E%3Cstop offset='50%25' stop-color='%23E11D48'/%3E%3Cstop offset='100%25' stop-color='%23F59E0B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='128' fill='url(%23bg)'/%3E%3Ccircle cx='256' cy='256' r='180' fill='none' stroke='%23334155' stroke-width='6' stroke-dasharray='12 12' opacity='0.5'/%3E%3Cpath d='M256 80 C185.3 80 128 137.3 128 208 C128 296 256 432 256 432 S384 296 384 208 C384 137.3 326.7 80 256 80 Z' fill='url(%23brand)'/%3E%3Ccircle cx='256' cy='208' r='64' fill='%230F172A'/%3E%3Cpolygon points='256,160 272,208 256,220 240,208' fill='%23F43F5E'/%3E%3Cpolygon points='256,256 272,208 256,220 240,208' fill='%2394A3B8'/%3E%3Ccircle cx='256' cy='208' r='8' fill='%23FFFFFF'/%3E%3C/svg%3E"
+    />
+
+    <!-- Icono para iPhone / iPad (Pantalla de inicio iOS) -->
     <link
       rel="apple-touch-icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%23E11D48'/%3E%3Cpath d='M256 96c-70.7 0-128 57.3-128 128 0 88 128 224 128 224s128-136 128-224c0-70.7-57.3-128-128-128zm0 176c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z' fill='%23FFFFFF'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230F172A'/%3E%3Cstop offset='100%25' stop-color='%23020617'/%3E%3C/linearGradient%3E%3ClinearGradient id='brand' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F43F5E'/%3E%3Cstop offset='50%25' stop-color='%23E11D48'/%3E%3Cstop offset='100%25' stop-color='%23F59E0B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='128' fill='url(%23bg)'/%3E%3Ccircle cx='256' cy='256' r='180' fill='none' stroke='%23334155' stroke-width='6' stroke-dasharray='12 12' opacity='0.5'/%3E%3Cpath d='M256 80 C185.3 80 128 137.3 128 208 C128 296 256 432 256 432 S384 296 384 208 C384 137.3 326.7 80 256 80 Z' fill='url(%23brand)'/%3E%3Ccircle cx='256' cy='208' r='64' fill='%230F172A'/%3E%3Cpolygon points='256,160 272,208 256,220 240,208' fill='%23F43F5E'/%3E%3Cpolygon points='256,256 272,208 256,220 240,208' fill='%2394A3B8'/%3E%3Ccircle cx='256' cy='208' r='8' fill='%23FFFFFF'/%3E%3C/svg%3E"
     />
+
+    <!-- Manifest PWA con soporte Maskable y Any -->
     <link
       rel="manifest"
-      href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Universal%20Trip%20Explorer%22%2C%22short_name%22%3A%22TripExplorer%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230F172A%22%2C%22theme_color%22%3A%22%230F172A%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27120%27%20fill%3D%27%2523E11D48%27%2F%253E%253Cpath%20d%3D%27M256%2096c-70.7%200-128%2057.3-128%20128%200%2088%20128%20224%20128%20224s128-136%20128-224c0-70.7-57.3-128-128-128zm0%20176c-26.5%200-48-21.5-48-48s21.5-48%2048-48%2048%2021.5%2048%2048-21.5%2048-48%2048z%27%20fill%3D%27%2523FFFFFF%27%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D"
+      href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Universal%20Trip%20Explorer%22%2C%22short_name%22%3A%22TripExplorer%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230F172A%22%2C%22theme_color%22%3A%22%230F172A%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Cdefs%253E%253ClinearGradient%20id%3D%27bg%27%20x1%3D%270%25%27%20y1%3D%270%25%27%20x2%3D%27100%25%27%20y2%3D%27100%25%27%253E%253Cstop%20offset%3D%270%25%27%20stop-color%3D%27%25230F172A%27%2F%253E%253Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%2523020617%27%2F%253E%253C%2FlinearGradient%253E%253ClinearGradient%20id%3D%27brand%27%20x1%3D%270%25%27%20y1%3D%270%25%27%20x2%3D%27100%25%27%20y2%3D%27100%25%27%253E%253Cstop%20offset%3D%270%25%27%20stop-color%3D%27%2523F43F5E%27%2F%253E%253Cstop%20offset%3D%2750%25%27%20stop-color%3D%27%2523E11D48%27%2F%253E%253Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%2523F59E0B%27%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27128%27%20fill%3D%27url(%2523bg)%27%2F%253E%253Ccircle%20cx%3D%27256%27%20cy%3D%27256%27%20r%3D%27180%27%20fill%3D%27none%27%20stroke%3D%27%2523334155%27%20stroke-width%3D%276%27%20stroke-dasharray%3D%2712%2012%27%20opacity%3D%270.5%27%2F%253E%253Cpath%20d%3D%27M256%2080%20C185.3%2080%20128%20137.3%20128%20208%20C128%20296%20256%20432%20256%20432%20S384%20296%20384%20208%20C384%20137.3%20326.7%2080%20256%2080%20Z%27%20fill%3D%27url(%2523brand)%27%2F%253E%253Ccircle%20cx%3D%27256%27%20cy%3D%27208%27%20r%3D%2764%27%20fill%3D%27%25230F172A%27%2F%253E%253Cpolygon%20points%3D%27256%2C160%20272%2C208%20256%2C220%20240%2C208%27%20fill%3D%27%2523F43F5E%27%2F%253E%253Cpolygon%20points%3D%27256%2C256%20272%2C208%20256%2C220%20240%2C208%27%20fill%3D%27%252394A3B8%27%2F%253E%253Ccircle%20cx%3D%27256%27%20cy%3D%27208%27%20r%3D%278%27%20fill%3D%27%2523FFFFFF%27%2F%253E%253C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D"
     />
 
     <!-- Tailwind CSS & FontAwesome -->
@@ -65,7 +77,101 @@
         <div
           class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-950/40 flex-shrink-0"
         >
-          <i class="fa-solid fa-compass text-white text-xl"></i>
+          <!-- <i class="fa-solid fa-compass text-white text-xl"></i>
+            -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <defs>
+              <!-- Gradiente de fondo del icono -->
+              <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0F172A" />
+                <stop offset="100%" stop-color="#020617" />
+              </linearGradient>
+              <!-- Gradiente de la aguja y anillos -->
+              <linearGradient
+                id="brandGrad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="#F43F5E" />
+                <stop offset="50%" stop-color="#E11D48" />
+                <stop offset="100%" stop-color="#F59E0B" />
+              </linearGradient>
+              <!-- Filtro de sombra sutil -->
+              <filter
+                id="dropShadow"
+                x="-10%"
+                y="-10%"
+                width="120%"
+                height="120%"
+              >
+                <feDropShadow
+                  dx="0"
+                  dy="8"
+                  stdDeviation="12"
+                  flood-color="#E11D48"
+                  flood-opacity="0.35"
+                />
+              </filter>
+            </defs>
+
+            <!-- Fondo redondeado con borde sutil -->
+            <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+            <rect
+              width="504"
+              height="504"
+              x="4"
+              y="4"
+              rx="124"
+              fill="none"
+              stroke="#334155"
+              stroke-width="6"
+              opacity="0.6"
+            />
+
+            <!-- Anillos del radar concéntrico -->
+            <circle
+              cx="256"
+              cy="256"
+              r="180"
+              fill="none"
+              stroke="#334155"
+              stroke-width="4"
+              stroke-dasharray="10 10"
+              opacity="0.4"
+            />
+            <circle
+              cx="256"
+              cy="256"
+              r="120"
+              fill="none"
+              stroke="#475569"
+              stroke-width="4"
+              opacity="0.3"
+            />
+
+            <!-- Chincheta / Brújula de viaje central -->
+            <g filter="url(#dropShadow)">
+              <!-- Cuerpo de la chincheta -->
+              <path
+                d="M256 80 C185.3 80 128 137.3 128 208 C128 296 256 432 256 432 S384 296 384 208 C384 137.3 326.7 80 256 80 Z"
+                fill="url(#brandGrad)"
+              />
+              <!-- Círculo interior oscuro -->
+              <circle cx="256" cy="208" r="64" fill="#0F172A" />
+              <!-- Aguja náutica central -->
+              <polygon
+                points="256,160 272,208 256,220 240,208"
+                fill="#F43F5E"
+              />
+              <polygon
+                points="256,256 272,208 256,220 240,208"
+                fill="#94A3B8"
+              />
+              <circle cx="256" cy="208" r="8" fill="#FFFFFF" />
+            </g>
+          </svg>
         </div>
         <div>
           <div class="flex items-center gap-2">

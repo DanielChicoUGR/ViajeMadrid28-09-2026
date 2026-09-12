@@ -774,6 +774,57 @@
       "summary": "Circuito exterior con fuertes desniveles y karts de dos tiempos Rotax para pilotos experimentados.",
       "description": "Concebido por un piloto profesional, sus curvas rápidas elevan las fuerzas laterales por encima de la media de pistas recreativas.",
       "tip": "Si tienes experiencia previa en kárting, solicita la tanda con motorización Rotax 2T."
+    },
+    {
+      "id": "museo-historia-madrid",
+      "title": "Museo de Historia de Madrid",
+      "category": "arte",
+      "categoryName": "Historia Urbana",
+      "location": "Calle de Fuencarral, 78 (Tribunal)",
+      "lat": 40.4262,
+      "lng": -3.7011,
+      "transit": "10 min a pie / Metro L1 Tribunal",
+      "priceMin": 0,
+      "priceMax": 0,
+      "priceDisplay": "Gratuito",
+      "schedule": "Vie, Sáb y Dom: 10:00 a 20:00 h",
+      "summary": "Recorrido por la evolución de Madrid en el antiguo Hospicio de San Fernando.",
+      "description": "Alberga la maqueta de Madrid de León Gil de Palacio de 1830, colecciones de porcelana del Buen Retiro, pinturas de Goya y testimonios gráficos de la vida cotidiana madrileña.",
+      "tip": "La fachada barroca de Pedro de Ribera es una de las joyas monumentales de la calle Fuencarral."
+    },
+    {
+      "id": "museo-arqueologico-nacional",
+      "title": "Museo Arqueológico Nacional (MAN)",
+      "category": "arte",
+      "categoryName": "Arqueología",
+      "location": "Calle de Serrano, 13 (Plaza de Colón)",
+      "lat": 40.4234,
+      "lng": -3.6888,
+      "transit": "15 min a pie / Metro L4 Serrano / L2 Banco de España",
+      "priceMin": 3,
+      "priceMax": 3,
+      "priceDisplay": "3,00 € (Gratis sáb tarde y dom)",
+      "schedule": "Vie y Sáb (09:30-20h, gratis desde 14h) | Dom (09:30-15h gratis)",
+      "summary": "Tesoros arqueológicos de España: la Dama de Elche, el tesoro de Guarrazar y momias egipcias.",
+      "description": "Espacio expositivo renovado que recorre desde la Prehistoria hasta la Edad Moderna. Cuenta con la réplica de la cueva de Altamira en su jardín exterior subterráneo.",
+      "tip": "Aprovecha el acceso 100% gratuito los sábados a partir de las 14:00 h y domingos por la mañana."
+    },
+    {
+      "id": "museo-ciencias-naturales",
+      "title": "Museo Nacional de Ciencias Naturales (MNCN)",
+      "category": "arte",
+      "categoryName": "Ciencia & Naturaleza",
+      "location": "Calle de José Gutiérrez Abascal, 2 (Castellana)",
+      "lat": 40.4407,
+      "lng": -3.6896,
+      "transit": "10 min en Cercanías / Metro L10 Gregorio Marañón",
+      "priceMin": 7,
+      "priceMax": 7,
+      "priceDisplay": "7,00 € (Reducida 3,50 €)",
+      "schedule": "Viernes (10-17h) | Sábado y Domingo (10:00 a 20:00 h)",
+      "summary": "Esqueletos de dinosaurios, el megaterio histórico y salas de biodiversidad y evolución.",
+      "description": "Perteneciente al CSIC, es uno de los museos de historia natural más antiguos de Europa. Destaca el esqueleto del Diplodocus y la colección histórica de fauna taxidermizada.",
+      "tip": "Combina la visita con un paseo por el eje de Nuevos Ministerios y la Castellana."
     }
   ]
 }
